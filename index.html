@@ -380,7 +380,8 @@ function fromArt(a){
     fit: a.ajustePortada === 'contener' ? 'contain' : null, bgc: '#ffffff', pieces: pcs
   };
 }
-async function getJSON(url){ const r = await fetch(url, {cache:'no-cache'}); if(!r.ok) throw new Error(url + ' ' + r.status); return r.json(); }
+// "?t=..." evita que el navegador o GitHub sirvan una copia antigua: lo guardado en el panel se ve en cuanto GitHub lo publica
+async function getJSON(url){ const r = await fetch(url + '?t=' + Date.now(), {cache:'no-store'}); if(!r.ok) throw new Error(url + ' ' + r.status); return r.json(); }
 let juegos = [], arte = [], PERFIL = {};
 try {
   [juegos, arte, PERFIL] = await Promise.all([getJSON('content/juegos.json'), getJSON('content/arte.json'), getJSON('content/perfil.json')]);
