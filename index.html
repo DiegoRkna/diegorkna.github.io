@@ -60,6 +60,56 @@ a.ico{text-decoration:none;color:inherit}
 
 /* cuadrícula */
 .group{display:flex;flex-direction:column;gap:12px}
+.group[hidden]{display:none}
+/* separador entre secciones: línea discontinua que se desplaza lentamente */
+.group ~ .group::before{content:"";display:block;height:2px;margin:6px 0 14px;border-radius:2px;
+  background:repeating-linear-gradient(90deg,var(--muted) 0 10px,transparent 10px 20px);background-size:20px 2px;opacity:.45;
+  animation:dash-move 2.6s linear infinite}
+@keyframes dash-move{to{background-position:20px 0}}
+
+/* ---------- cintas VHS ---------- */
+.vhs-grid{grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+.tile.vhs-tile .frame{aspect-ratio:auto;padding:12px}
+.vhs{position:relative;width:100%;aspect-ratio:188/104;border-radius:5.5%/10%;container-type:inline-size;
+  background:linear-gradient(180deg,#34363a,#202124 55%,#1a1b1d);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),inset 0 -2px 0 rgba(0,0,0,.4),0 6px 14px -8px rgba(0,0,0,.5)}
+.vhs::before,.vhs::after{content:"";position:absolute;width:2.6cqw;height:2.6cqw;border-radius:50%;top:4cqw;
+  background:radial-gradient(circle,#55585e 30%,#2a2b2e 32%);box-shadow:inset 0 0 0 .3cqw #111}
+.vhs::before{left:3.5cqw}
+.vhs::after{right:3.5cqw}
+.vhs-label{position:absolute;left:11%;right:11%;top:7%;height:52%;border-radius:1.4cqw;background:#f4f1e8;padding:1.6cqw 1.6cqw 0;
+  display:flex;flex-direction:column;gap:1cqw;box-shadow:0 .4cqw 1cqw rgba(0,0,0,.35)}
+.vhs-thumb{flex:1;min-height:0;border-radius:.8cqw;background:#111 center/cover no-repeat;box-shadow:inset 0 0 0 1px rgba(0,0,0,.15)}
+.vhs-strip{height:4.4cqw;display:flex;align-items:center;justify-content:space-between;padding:0 .6cqw;font:800 2.6cqw/1 var(--f-display);color:#2b2c30;letter-spacing:.06em}
+.vhs-strip i{display:block;height:1.6cqw;flex:1;margin:0 1.6cqw;border-radius:1cqw;background:linear-gradient(90deg,#ff5d5d,#ffb84d,#ffe35c,#5fd98a,#4fb4ff)}
+.vhs-window{position:absolute;left:25%;right:25%;top:65%;height:24%;border-radius:2cqw;background:linear-gradient(180deg,rgba(20,22,24,.95),rgba(42,44,48,.95));
+  box-shadow:inset 0 0 0 .5cqw #111,inset 0 1cqw 2cqw rgba(0,0,0,.6);overflow:hidden}
+.vhs-window::before{content:"";position:absolute;left:18%;right:18%;top:38%;height:24%;background:#3a2a20;opacity:.9}
+.reel{position:absolute;top:6%;height:88%;aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle,#18191b 0 11%,#f2f2f2 12% 44%,#4a3426 45% 70%,#2c1e15 71% 100%)}
+.reel::after{content:"";position:absolute;inset:14%;border-radius:50%;
+  background:repeating-conic-gradient(from 10deg,rgba(24,25,27,.85) 0 22deg,transparent 22deg 60deg);
+  -webkit-mask:radial-gradient(circle,transparent 0 30%,#000 31% 95%,transparent 96%);mask:radial-gradient(circle,transparent 0 30%,#000 31% 95%,transparent 96%)}
+.reel.l{left:6%}
+.reel.r{right:6%}
+.vhs-tile:hover .reel,.vhs-tile:focus-visible .reel,.vhs.playing .reel{animation:reel-spin 1.6s linear infinite}
+.vhs.playing .reel{animation-duration:.5s}
+@keyframes reel-spin{to{transform:rotate(360deg)}}
+.vhs-brand{position:absolute;left:4.5%;bottom:7%;font:800 italic 3.6cqw/1 var(--f-display);color:#8b8e93;letter-spacing:.04em}
+.vhs-dur{position:absolute;right:4.5%;bottom:7%;font:700 3cqw/1 var(--f-display);color:#8b8e93}
+.tile.vhs-tile .caption{white-space:normal}
+.tile.vhs-tile .caption .vt{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+/* reproductor tipo televisor */
+.tv{position:fixed;inset:0;z-index:70;background:rgba(18,19,22,.9);display:flex;align-items:center;justify-content:center;
+  padding:max(16px, env(safe-area-inset-top,0px)) max(16px, env(safe-area-inset-right,0px)) max(16px, env(safe-area-inset-bottom,0px)) max(16px, env(safe-area-inset-left,0px))}
+.tv[hidden]{display:none}
+.tv-box{width:min(980px,100%);display:flex;flex-direction:column;gap:14px}
+.tv-screen{position:relative;aspect-ratio:16/9;border-radius:18px;overflow:hidden;background:#000 center/cover no-repeat;box-shadow:0 0 0 6px #2a2b2f,0 30px 60px -20px rgba(0,0,0,.6)}
+.tv-screen iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.tv-screen .tv-open{position:absolute;inset:0;display:grid;place-items:center;text-decoration:none;color:#fff;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.55))}
+.tv-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;color:#fff}
+.tv-bar strong{font:700 17px/1.3 var(--f-display);min-width:0}
+.tv-bar div{display:flex;gap:8px}
 .group-label{margin:0;font:700 13px var(--f-display);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:clamp(14px,2vw,24px)}
 .tile{position:relative;border:0;padding:0;background:none;cursor:pointer;display:flex;flex-direction:column;gap:10px;text-align:left;min-width:0}
@@ -385,6 +435,7 @@ html,body{transition:background-color .3s ease}
 
   <section class="group" aria-labelledby="g-games"><p class="group-label" id="g-games">Juegos</p><div class="grid" id="grid-game"></div></section>
   <section class="group" id="sec-art" aria-labelledby="g-art"><p class="group-label" id="g-art">Arte</p><div class="grid" id="grid-art"></div></section>
+  <section class="group" id="sec-vid" aria-labelledby="g-vid" hidden><p class="group-label" id="g-vid">YouTube</p><div class="grid vhs-grid" id="grid-vid"></div></section>
 
   <p class="hints"><span><kbd class="kbd-arr"><svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></kbd>Elegir</span><span><kbd>Enter</kbd>Abrir</span><span><kbd>Esc</kbd>Volver</span></p>
 </div>
@@ -399,6 +450,10 @@ html,body{transition:background-color .3s ease}
   </div></div>
 </div>
 
+<div class="tv" id="tv" hidden role="dialog" aria-modal="true" aria-labelledby="tv-title">
+  <div class="tv-box"><div class="tv-screen" id="tv-screen"></div>
+    <div class="tv-bar"><strong id="tv-title"></strong><div><a class="btn primary" id="tv-yt" href="#" target="_blank" rel="noopener">Ver en YouTube ↗</a><button type="button" class="btn" id="tv-close">Cerrar ✕</button></div></div></div>
+</div>
 <div class="lightbox" id="lb" hidden role="dialog" aria-modal="true" aria-label="Imagen ampliada"><button type="button" class="btn" id="lb-close">Cerrar ✕</button><div class="lb-media" id="lb-media"></div><p id="lb-cap"></p></div>
 <div class="screen" id="screen" hidden role="dialog" aria-modal="true" aria-labelledby="scr-title"><div class="panel" id="panel"></div></div>
 
@@ -447,9 +502,9 @@ function fromArt(a){
 }
 // "?t=..." evita que el navegador o GitHub sirvan una copia antigua: lo guardado en el panel se ve en cuanto GitHub lo publica
 async function getJSON(url){ const r = await fetch(url + '?t=' + Date.now(), {cache:'no-store'}); if(!r.ok) throw new Error(url + ' ' + r.status); return r.json(); }
-let juegos = [], arte = [], PERFIL = {};
+let juegos = [], arte = [], PERFIL = {}, videos = [];
 try {
-  [juegos, arte, PERFIL] = await Promise.all([getJSON('content/juegos.json'), getJSON('content/arte.json'), getJSON('content/perfil.json')]);
+  [juegos, arte, PERFIL, videos] = await Promise.all([getJSON('content/juegos.json'), getJSON('content/arte.json'), getJSON('content/perfil.json'), getJSON('content/videos.json').catch(() => [])]);
   if (Array.isArray(PERFIL)) PERFIL = PERFIL[0] || {};
 } catch (err) {
   document.getElementById('sel-title').textContent = 'No se ha podido cargar el contenido';
@@ -818,6 +873,68 @@ panel.addEventListener('click',e=>{
   else if(a==='copy'){ const done=()=>{b.textContent='Copiado';tone([1319,1760],.06)};
     try{ navigator.clipboard.writeText(PERFIL.email || '').then(done,selectMail); }catch(err){ selectMail(); } }
 });
+/* ---------- vídeos de YouTube como cintas VHS ---------- */
+const VIDS = list(videos).map(v => { const id = ytId(v.url); return id ? {id, title: esc(v.titulo), url: `https://www.youtube.com/watch?v=${id}`, dur: esc(v.duracion),
+  date: v.fecha ? new Date(v.fecha + 'T12:00').toLocaleDateString('es-ES', {day:'numeric', month:'short', year:'numeric'}) : '',
+  thumb: v.miniatura ? P(v.miniatura) : `https://i.ytimg.com/vi/${id}/hqdefault.jpg`} : null; }).filter(Boolean);
+const vhsHTML = v => `<div class="vhs"><div class="vhs-label"><div class="vhs-thumb" style="background-image:url(${v.thumb})"></div>
+  <div class="vhs-strip"><span>RKNA</span><i></i><span>SP</span></div></div>
+  <div class="vhs-window"><span class="reel l"></span><span class="reel r"></span></div><span class="vhs-brand">VHS</span><span class="vhs-dur">${v.dur}</span></div>`;
+if (VIDS.length) {
+  document.getElementById('sec-vid').hidden = false;
+  const grid = document.getElementById('grid-vid');
+  VIDS.forEach(v => {
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'tile vhs-tile'; b.setAttribute('aria-label', 'Ver ' + v.title);
+    b.innerHTML = `<span class="frame">${vhsHTML(v)}</span><span class="caption"><span class="vt">${v.title}</span><small>${[v.date, v.dur].filter(Boolean).join(' · ')}</small></span>`;
+    b.addEventListener('mouseenter', () => tone([1175], .04, .02));
+    b.addEventListener('click', () => playTape(b, v));
+    grid.appendChild(b);
+  });
+}
+const tv = document.getElementById('tv'); let tvFrom = null, tapeBusy = false;
+async function playTape(tile, v){
+  if (tapeBusy) return; tapeBusy = true; tvFrom = tile;
+  tone([523, 659, 784], .07);
+  if (!reduce) await insertTape(tile);
+  openTV(v); tapeBusy = false;
+}
+/* la cinta sale de la cuadrícula y entra en una ranura invisible, como en un vídeo VHS */
+async function insertTape(tile){
+  const src = tile.querySelector('.vhs'), r = src.getBoundingClientRect(), vw = innerWidth, vh = innerHeight;
+  const W = Math.min(vw * .74, 560), k = W / r.width, Hs = r.height * k;
+  const layer = document.createElement('div'); layer.className = 'insert-layer';
+  const d = document.createElement('div'); d.className = 'insert-disc'; d.style.cssText = `width:${r.width}px;height:${r.height}px`;
+  const c = src.cloneNode(true); c.classList.add('playing'); d.appendChild(c);
+  const slotY = vh / 2 + Hs * .62, slot = document.createElement('div'); slot.className = 'slot-line';
+  slot.style.cssText = `left:${vw/2 - W*.58}px;width:${W*1.16}px;top:${slotY - 5}px`;
+  layer.append(d, slot); document.body.appendChild(layer); src.style.visibility = 'hidden';
+  const cx = vw/2 - r.width/2, cy = vh/2 - r.height/2 - Hs*.04;
+  await anim(d, [{transform:`translate(${r.left}px,${r.top}px) scale(1)`}, {transform:`translate(${cx}px,${cy}px) scale(${k})`}], 520, 'cubic-bezier(.3,.6,.2,1)');
+  await wait(220);
+  layer.style.clipPath = `inset(0 0 ${vh - slotY}px 0)`;
+  anim(slot, [{opacity:0}, {opacity:.9, offset:.25}, {opacity:.9, offset:.7}, {opacity:0}], 460, 'linear');
+  tone([392, 330], .07);
+  await anim(d, [{transform:`translate(${cx}px,${cy}px) scale(${k})`}, {transform:`translate(${cx}px,${slotY + Hs*.56 - r.height/2}px) scale(${k})`}], 440, 'cubic-bezier(.5,0,.9,.5)');
+  await wait(60); layer.remove(); src.style.visibility = '';
+}
+function openTV(v){
+  const scr = document.getElementById('tv-screen'); scr.style.backgroundImage = `url(${v.thumb})`;
+  const inClaude = !!(window.claude && window.claude.use);   // la vista previa de Claude no permite reproductores incrustados
+  scr.innerHTML = inClaude
+    ? `<a class="tv-open" href="${v.url}" target="_blank" rel="noopener"><span class="yt-play"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span></a>`
+    : `<iframe src="https://www.youtube-nocookie.com/embed/${v.id}?autoplay=1&rel=0" title="${v.title}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
+  document.getElementById('tv-title').innerHTML = v.title; document.getElementById('tv-yt').href = v.url;
+  tv.hidden = false; document.body.classList.add('locked');
+  if (!reduce) anim(tv.querySelector('.tv-box'), [{opacity:0, transform:'scale(.92)'}, {opacity:1, transform:'scale(1)'}], 320, 'cubic-bezier(.2,1.15,.4,1)');
+  document.getElementById('tv-close').focus({preventScroll:true});
+}
+function closeTV(){
+  tv.hidden = true; document.getElementById('tv-screen').innerHTML = ''; document.body.classList.remove('locked');
+  tone([784, 523], .06); if (tvFrom) tvFrom.focus({preventScroll:true});
+}
+document.getElementById('tv-close').addEventListener('click', closeTV);
+tv.addEventListener('click', e => { if (e.target === tv) closeTV(); });
+
 const lb=document.getElementById('lb'); let lbFrom=null;
 function openLB(src,t,from){ lbFrom=from;
   document.getElementById('lb-media').innerHTML = isVid(src) ? `<video src="${src}" controls autoplay loop muted playsinline></video>`
@@ -836,6 +953,7 @@ function moveVert(i,dir){
   return best;
 }
 document.addEventListener('keydown',e=>{
+  if(!tv.hidden){ if(e.key==='Escape'){e.preventDefault();closeTV()} return; }
   if(!lb.hidden){ if(e.key==='Escape'){e.preventDefault();closeLB()} return; }
   if(!screen.hidden){
     if(e.key==='Escape'){e.preventDefault();closeItem()}

@@ -285,6 +285,37 @@ content:
             type: string
             description: Por ejemplo, su página de ArtStation. Si lo dejas vacío, la imagen se amplía al pulsarla.
 
+  # ---------------------------------------------------------------- VÍDEOS
+  - name: videos
+    label: Vídeos de YouTube
+    type: file
+    path: content/videos.json
+    format: json
+    list: true
+    fields:
+      - name: titulo
+        label: Título
+        type: string
+        required: true
+        description: El orden de la lista es el orden en que salen las cintas.
+      - name: url
+        label: Enlace de YouTube
+        type: string
+        required: true
+      - name: fecha
+        label: Fecha de publicación
+        type: date
+        options: { format: yyyy-MM-dd }
+      - name: duracion
+        label: Duración
+        type: string
+        description: Por ejemplo 12:19
+      - name: miniatura
+        label: Miniatura (opcional)
+        type: image
+        description: Si no subes ninguna, se usa la de YouTube.
+        options: { media: imagenes }
+
   # ---------------------------------------------------------------- PERFIL
   - name: perfil
     label: Perfil, Sobre mí y Contacto

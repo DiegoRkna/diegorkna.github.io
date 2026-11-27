@@ -1,0 +1,30 @@
+[
+  {
+    "titulo": "La magia de los juegos feos",
+    "url": "https://www.youtube.com/watch?v=bzxxLeTt514",
+    "fecha": "2025-05-15",
+    "duracion": "12:19",
+    "miniatura": "img/yt-bzxxLeTt514.jpg"
+  },
+  {
+    "titulo": "¿Los mejores juegos deben gustarnos a todos?",
+    "url": "https://www.youtube.com/watch?v=DrpefqS_JUM",
+    "fecha": "2023-10-30",
+    "duracion": "12:39",
+    "miniatura": "img/yt-DrpefqS_JUM.jpg"
+  },
+  {
+    "titulo": "La joya perdida de SEGA | Jet Set Radio",
+    "url": "https://www.youtube.com/watch?v=QHxCRIs8AJs",
+    "fecha": "2023-04-12",
+    "duracion": "11:01",
+    "miniatura": "img/yt-QHxCRIs8AJs.jpg"
+  },
+  {
+    "titulo": "La imperfecta evolución de un juego perfecto | Tetris",
+    "url": "https://www.youtube.com/watch?v=JQP5ds0XI8c",
+    "fecha": "2023-01-01",
+    "duracion": "12:21",
+    "miniatura": "img/yt-JQP5ds0XI8c.jpg"
+  }
+]
