@@ -406,6 +406,25 @@ html,body{transition:background-color .3s ease}
 :root[data-mode="dark"] .mode .sun{color:var(--muted)}
 :root[data-mode="dark"] .mode .moon{color:var(--sel)}
 .mode:focus-visible{outline:none;box-shadow:inset 0 0 0 1px var(--line),0 0 0 3px var(--bg),0 0 0 6px var(--sel)}
+/* ---------- filtro CRT (sutil) ---------- */
+.crt{position:fixed;inset:0;z-index:2147483000;pointer-events:none;display:none}
+:root.crt-on .crt{display:block}
+.crt>i{position:absolute;inset:0;display:block}
+/* scanlines + rejilla RGB muy suave */
+.crt .scan{background:repeating-linear-gradient(180deg,rgba(0,0,0,.055) 0 1px,transparent 1px 3px);mix-blend-mode:multiply}
+.crt .rgb{background:repeating-linear-gradient(90deg,rgba(255,40,40,.035) 0 1px,rgba(40,255,90,.03) 1px 2px,rgba(50,90,255,.035) 2px 3px);mix-blend-mode:multiply}
+/* curvatura: el centro de la pantalla abomba (brillo) y los bordes se oscurecen hacia las esquinas redondeadas del tubo */
+.crt .curve{border-radius:22px/26px;box-shadow:0 0 0 40px #0c0c0e,inset 0 0 0 1px rgba(0,0,0,.35),inset 0 0 60px 6px rgba(0,0,0,.16),inset 0 0 140px 20px rgba(0,0,0,.07);
+  background:radial-gradient(120% 95% at 50% 46%,rgba(255,255,255,.06) 0 40%,transparent 62%,rgba(0,0,0,.09) 100%)}
+/* reflejo del cristal y una banda que baja muy despacio */
+.crt .glass{background:radial-gradient(60% 40% at 22% 10%,rgba(255,255,255,.07),transparent 70%)}
+.crt .roll{inset:auto 0 auto 0;top:0;height:18vh;background:linear-gradient(180deg,transparent,rgba(255,255,255,.035) 50%,transparent);animation:crt-roll 9s linear infinite}
+.crt .flick{background:rgba(0,0,0,.02);animation:crt-flick 4s steps(1) infinite}
+@keyframes crt-roll{from{transform:translateY(-20vh)}to{transform:translateY(105vh)}}
+@keyframes crt-flick{0%,100%{opacity:0}48%{opacity:1}50%{opacity:0}83%{opacity:.6}84%{opacity:0}}
+:root[data-mode="dark"] .crt .scan{background:repeating-linear-gradient(180deg,rgba(0,0,0,.16) 0 1px,transparent 1px 3px)}
+:root[data-mode="dark"] .crt .curve{box-shadow:0 0 0 40px #0c0c0e,inset 0 0 0 1px rgba(0,0,0,.5),inset 0 0 70px 8px rgba(0,0,0,.3),inset 0 0 160px 24px rgba(0,0,0,.12)}
+@media (max-width:700px){.crt .curve{border-radius:16px/20px}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
 
@@ -456,6 +475,7 @@ html,body{transition:background-color .3s ease}
     <div class="tv-bar"><strong id="tv-title"></strong><div><a class="btn primary" id="tv-yt" href="#" target="_blank" rel="noopener">Ver en YouTube ↗</a><button type="button" class="btn" id="tv-close">Cerrar ✕</button></div></div></div>
 </div>
 <div class="lightbox" id="lb" hidden role="dialog" aria-modal="true" aria-label="Imagen ampliada"><button type="button" class="btn" id="lb-close">Cerrar ✕</button><div class="lb-media" id="lb-media"></div><p id="lb-cap"></p></div>
+<div class="crt" aria-hidden="true"><i class="rgb"></i><i class="scan"></i><i class="flick"></i><i class="roll"></i><i class="glass"></i><i class="curve"></i></div>
 <div class="screen" id="screen" hidden role="dialog" aria-modal="true" aria-labelledby="scr-title"><div class="panel" id="panel"></div></div>
 
 <script>
@@ -513,6 +533,7 @@ try {
   console.error(err); return;
 }
 const pc = PERFIL.colores || {};
+document.documentElement.classList.toggle('crt-on', PERFIL.filtroCRT !== false);   // filtro de tele antigua, se apaga desde el panel
 const ITEMS = [
   ...list(juegos).map(fromGame),
   ...(PERFIL.mostrarArte === false ? [] : list(arte).map(fromArt)),   // la sección Arte se puede ocultar desde el panel
