@@ -126,29 +126,33 @@ a.ico{text-decoration:none;color:inherit}
 .f-inside{width:var(--w);height:var(--h);transform:translateZ(calc(var(--d) / 2 - 1px));border-radius:14px;background:#f6f6f6;
   display:grid;place-items:center;align-content:center;gap:10px;box-shadow:inset 0 0 0 1px var(--line),inset 0 0 0 8px #fbfbfb}
 /* disco: ilustración arriba, franja negra con datos y parte plateada irisada abajo */
-.disc{width:86%;aspect-ratio:1;border-radius:50%;position:relative;overflow:hidden;container-type:inline-size;
+.disc-wrap{width:86%;aspect-ratio:1;position:relative}
+.disc{width:100%;height:100%;border-radius:50%;position:relative;overflow:hidden;container-type:inline-size;
+  -webkit-mask:radial-gradient(circle at 50% 50%,transparent 0 19%,#000 19.2%);mask:radial-gradient(circle at 50% 50%,transparent 0 19%,#000 19.2%);
   background:
     conic-gradient(from 200deg at 50% 50%,rgba(255,170,210,.0),rgba(255,170,210,.5) 8%,rgba(170,225,255,.55) 14%,rgba(205,255,215,.45) 20%,rgba(255,240,170,.0) 28%,
       rgba(255,240,170,.0) 58%,rgba(255,230,160,.5) 66%,rgba(170,220,255,.5) 72%,rgba(220,180,255,.45) 78%,rgba(220,180,255,.0) 86%),
     conic-gradient(from 10deg,#c3c6ca,#eef0f2,#b5b9be,#e4e6e9,#c7cace,#f2f3f4,#c3c6ca);
-  box-shadow:0 0 0 1px #9da1a6,0 8px 18px -8px rgba(0,0,0,.35)}
+  box-shadow:inset 0 0 0 1px #9da1a6}
+.disc-wrap::before{content:"";position:absolute;inset:0;border-radius:50%;box-shadow:0 0 0 1px #9da1a6,0 8px 18px -8px rgba(0,0,0,.35);
+  -webkit-mask:radial-gradient(circle at 50% 50%,transparent 0 19%,#000 19.2%);mask:radial-gradient(circle at 50% 50%,transparent 0 19%,#000 19.2%)}
 .disc.full{background:#d9dcdf}
 .d-full{position:absolute;inset:0;border-radius:50%;background:center/cover no-repeat}
-.d-art{position:absolute;left:0;top:0;width:100%;height:63%;background:var(--b) center/cover no-repeat;background-image:var(--img,none)}
+.d-art{position:absolute;left:0;top:0;width:100%;height:69%;background:var(--b) center/cover no-repeat;background-image:var(--img,none)}
 .d-art::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.28) 48%,transparent 60%)}
-.d-band{position:absolute;left:0;right:0;top:63%;height:12.5%;background:#1c1d1f;color:#ececec;display:flex;align-items:center;justify-content:space-between;
+.d-band{position:absolute;left:0;right:0;top:69%;height:11%;background:#1c1d1f;color:#ececec;display:flex;align-items:center;justify-content:space-between;
   padding:0 13%;font:700 3.2cqw/1.15 var(--f-display);letter-spacing:.04em}
 .d-band .mk{border:.5cqw solid #ececec;border-radius:1cqw;padding:.6cqw 1.2cqw;font:800 4.2cqw/1 var(--f-display)}
 .d-band .cd{text-align:center}
 .d-band .cd b{display:block;font-size:3.8cqw}
 .d-band .dk{text-align:right;font:800 5.4cqw/0.9 var(--f-display);letter-spacing:-.02em}
 .d-band .dk small{display:block;font:700 2.2cqw/1 var(--f-display);letter-spacing:.06em}
-.d-foot{position:absolute;left:0;right:0;top:77%;text-align:center;color:#2a2c2f;display:flex;flex-direction:column;align-items:center;gap:1.2cqw}
+.d-foot{position:absolute;left:0;right:0;top:82%;text-align:center;color:#2a2c2f;display:flex;flex-direction:column;align-items:center;gap:1.2cqw}
 .d-foot strong{font:800 italic 7.4cqw/1 var(--f-display);letter-spacing:.06em}
 .d-foot span{font:600 2.4cqw/1.3 var(--f-body);color:#4a4d51}
-.d-hub{position:absolute;inset:32%;border-radius:50%;
-  background:radial-gradient(circle,#f6f6f6 0 27%,#9a9ea3 28% 30%,#5f6368 31% 48%,#80848a 49% 62%,#5f6368 63% 72%,#a9adb2 73% 92%,#cfd2d5 93% 100%);
-  box-shadow:0 0 0 .6cqw rgba(255,255,255,.35),0 0 0 1cqw rgba(0,0,0,.25)}
+.d-hub{position:absolute;inset:31%;pointer-events:none;border-radius:50%;
+  background:radial-gradient(circle,transparent 0 31%,rgba(140,145,150,.9) 31.5% 33.5%,rgba(255,255,255,.35) 34% 54%,rgba(170,175,180,.6) 54.5% 56%,
+    rgba(255,255,255,.28) 56.5% 61%,rgba(170,175,180,.7) 61.5% 63%,rgba(255,255,255,.4) 63.5% 92%,rgba(170,175,180,.7) 92.5% 94%,rgba(255,255,255,.45) 94.5% 98%,rgba(150,155,160,.9) 98.5% 100%)}
 @keyframes spin{to{transform:rotate(360deg)}}
 .f-back{width:var(--w);height:var(--h);transform:rotateY(180deg) translateZ(calc(var(--d) / 2));border-radius:14px;background:#f1f1f1;box-shadow:inset 0 0 0 1px var(--line)}
 .f-left,.f-right{width:var(--d);height:var(--h);left:calc((var(--w) - var(--d)) / 2);background:linear-gradient(90deg,#f7f7f7,#dcdddf)}
@@ -510,11 +514,10 @@ function dressBox(i){
   const discImg = it.img;
   const code=`DR-${String(i+1).padStart(4,'0')}`;
   // si hay un disco diseñado entero (plantilla de Photoshop), se usa tal cual y solo se dibuja el centro encima
-  document.getElementById('f-inside').innerHTML = it.discFull ? `<div class="disc full"><div class="d-full" style="background-image:url(${it.discFull})"></div><div class="d-hub"></div></div>` : `<div class="disc" style="${discImg?`--img:url(${discImg})`:''}">
+  document.getElementById('f-inside').innerHTML = `<div class="disc-wrap">` + (it.discFull ? `<div class="disc full"><div class="d-full" style="background-image:url(${it.discFull})"></div></div>` : `<div class="disc" style="${discImg?`--img:url(${discImg})`:''}">
     <div class="d-art"></div>
     <div class="d-band"><span class="mk">DR</span><span class="cd"><b>${code}</b>MADE IN BARCELONA</span><span class="dk">disc<small>PORTFOLIO</small></span></div>
-    <div class="d-foot"><strong>RKNA</strong><span>© ${it.year||2026} Diego Requena</span></div>
-    <div class="d-hub"></div></div>`;
+    <div class="d-foot"><strong>RKNA</strong><span>© ${it.year||2026} Diego Requena</span></div></div>`) + `<div class="d-hub"></div></div>`;
   const vw=innerWidth, vh=innerHeight, s=Math.min(vh*.5/H, vw*.42/W, 1.9);
   // abierto, el estuche ocupa dos anchos (tapa + disco): se centra el conjunto
   return {W,H,D,s,x0:r.left,y0:r.top,x1:vw/2-W/2+W*s*0.47,y1:vh/2-H/2};
