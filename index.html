@@ -132,6 +132,8 @@ a.ico{text-decoration:none;color:inherit}
       rgba(255,240,170,.0) 58%,rgba(255,230,160,.5) 66%,rgba(170,220,255,.5) 72%,rgba(220,180,255,.45) 78%,rgba(220,180,255,.0) 86%),
     conic-gradient(from 10deg,#c3c6ca,#eef0f2,#b5b9be,#e4e6e9,#c7cace,#f2f3f4,#c3c6ca);
   box-shadow:0 0 0 1px #9da1a6,0 8px 18px -8px rgba(0,0,0,.35)}
+.disc.full{background:#d9dcdf}
+.d-full{position:absolute;inset:0;border-radius:50%;background:center/cover no-repeat}
 .d-art{position:absolute;left:0;top:0;width:100%;height:63%;background:var(--b) center/cover no-repeat;background-image:var(--img,none)}
 .d-art::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.28) 48%,transparent 60%)}
 .d-band{position:absolute;left:0;right:0;top:63%;height:12.5%;background:#1c1d1f;color:#ececec;display:flex;align-items:center;justify-content:space-between;
@@ -362,7 +364,7 @@ function fromGame(g){
     id: uniqueId(g.titulo), kind:'game', title: esc(g.titulo), year: esc(g.anio), genre: esc(g.genero),
     engine: esc(g.motor), studio: esc(g.estudio), publisher: esc(g.publisher), platforms: esc(g.plataformas),
     a: esc(col.principal || '#9aa3ad'), b: esc(col.secundario || '#6b7480'),
-    img: P(g.imagenDisco || c.fondo),
+    img: P(g.imagenDisco || c.fondo), discFull: g.disco ? P(g.disco) : null,
     bg: c.fondo ? P(c.fondo) : null, logo: c.logo ? P(c.logo) : null,
     logoW: Number(c.tamanoLogo) || 80, shade: (Number(c.oscurecer) || 0) / 100, logoCss: LOGO_POS[c.posicionLogo] || '',
     video: vid ? {id: vid, label: esc(tr.titulo || 'Tráiler'), thumb: tr.miniatura ? P(tr.miniatura) : `https://i.ytimg.com/vi/${vid}/hqdefault.jpg`} : null,
@@ -505,9 +507,10 @@ function dressBox(i){
   fly.style.cssText=`--w:${W}px;--h:${H}px;--d:${D}px;${vars(it)}`;
   document.getElementById('lid-front').innerHTML=artHTML(it);
   document.getElementById('lid-back').innerHTML=manualHTML(it);
-  const discImg = it.disc || it.img;
+  const discImg = it.img;
   const code=`DR-${String(i+1).padStart(4,'0')}`;
-  document.getElementById('f-inside').innerHTML=`<div class="disc" style="${discImg?`--img:url(${discImg})`:''}">
+  // si hay un disco diseñado entero (plantilla de Photoshop), se usa tal cual y solo se dibuja el centro encima
+  document.getElementById('f-inside').innerHTML = it.discFull ? `<div class="disc full"><div class="d-full" style="background-image:url(${it.discFull})"></div><div class="d-hub"></div></div>` : `<div class="disc" style="${discImg?`--img:url(${discImg})`:''}">
     <div class="d-art"></div>
     <div class="d-band"><span class="mk">DR</span><span class="cd"><b>${code}</b>MADE IN BARCELONA</span><span class="dk">disc<small>PORTFOLIO</small></span></div>
     <div class="d-foot"><strong>RKNA</strong><span>© ${it.year||2026} Diego Requena</span></div>

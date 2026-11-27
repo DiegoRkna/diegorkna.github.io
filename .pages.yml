@@ -103,6 +103,11 @@ content:
         type: image
         description: La ilustración que se ve impresa en el CD al abrir el estuche.
         options: { media: imagenes }
+      - name: disco
+        label: Disco completo (plantilla)
+        type: image
+        description: PNG cuadrado del disco entero hecho con la plantilla de Photoshop (sin la capa del centro ni las guías). Si lo subes, sustituye al disco automático.
+        options: { media: imagenes }
       - name: trailer
         label: Tráiler
         type: object
