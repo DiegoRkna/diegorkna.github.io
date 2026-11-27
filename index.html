@@ -661,7 +661,9 @@ async function insertDisc(g){
   layer.style.cssText = vars(ITEMS[current]);
   const d = document.createElement('div'); d.className = 'insert-disc';
   d.style.cssText = `width:${size}px;height:${size}px;`;
-  d.appendChild(src.cloneNode(true));
+  // el giro va en una capa propia para que no dependa del movimiento: gira a ritmo continuo mientras baja
+  const spin = document.createElement('div'); spin.style.cssText = 'width:100%;height:100%';
+  spin.appendChild(src.cloneNode(true)); d.appendChild(spin);
   const slotY = vh / 2 + big * .62, slot = document.createElement('div'); slot.className = 'slot-line';
   slot.style.cssText = `left:${vw/2 - big*.65}px;width:${big*1.3}px;top:${slotY - 5}px`;
   layer.append(d, slot); document.body.appendChild(layer);
@@ -671,15 +673,16 @@ async function insertDisc(g){
   tone([523,659,784],.06);
   // 1) sale del estuche hacia el centro y crece mientras el estuche se desvanece
   anim(fly,[{opacity:1},{opacity:0}],420);
-  await anim(d,[{transform:`translate(${x0}px,${y0}px) scale(1) rotate(0deg)`},{transform:`translate(${cx}px,${cy}px) scale(${k}) rotate(0deg)`}],560,'cubic-bezier(.3,.6,.2,1)');
-  // 2) gira sobre sí mismo
-  await anim(d,[{transform:`translate(${cx}px,${cy}px) scale(${k}) rotate(0deg)`},{transform:`translate(${cx}px,${cy}px) scale(${k}) rotate(720deg)`}],520,'cubic-bezier(.5,0,.75,.6)');
-  // 3) entra en la ranura: todo lo que pasa de la línea desaparece
-  layer.style.clipPath = `inset(0 0 ${vh - slotY}px 0)`;
-  anim(slot,[{opacity:0},{opacity:.9,offset:.25},{opacity:.9,offset:.7},{opacity:0}],480,'linear');
+  await anim(d,[{transform:`translate(${x0}px,${y0}px) scale(1)`},{transform:`translate(${cx}px,${cy}px) scale(${k})`}],560,'cubic-bezier(.3,.6,.2,1)');
+  // 2) empieza a girar, coge velocidad y, sin frenar, entra en la ranura
+  const spinning = anim(spin,[{transform:'rotate(0deg)'},{transform:'rotate(1260deg)'}],900,'cubic-bezier(.45,0,1,1)');
+  await wait(420);
+  layer.style.clipPath = `inset(0 0 ${vh - slotY}px 0)`;   // lo que pasa de la línea desaparece
+  anim(slot,[{opacity:0},{opacity:.9,offset:.25},{opacity:.9,offset:.7},{opacity:0}],460,'linear');
   tone([392,330],.07);
-  await anim(d,[{transform:`translate(${cx}px,${cy}px) scale(${k}) rotate(720deg)`},{transform:`translate(${cx}px,${slotY - size/2 + big*.62}px) scale(${k}) rotate(1080deg)`}],380,'cubic-bezier(.55,0,.8,.4)');
-  await wait(80);
+  await Promise.all([spinning,
+    anim(d,[{transform:`translate(${cx}px,${cy}px) scale(${k})`},{transform:`translate(${cx}px,${slotY - size/2 + big*.62}px) scale(${k})`}],480,'cubic-bezier(.5,0,.9,.5)')]);
+  await wait(60);
 }
 async function closeItem(){
   if(busy||current<0) return; busy=true; tone([1319,988,784],.07);
