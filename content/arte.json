@@ -1,0 +1,115 @@
+[
+  {
+    "titulo": "Concept Art",
+    "genero": "Personajes",
+    "descripcion": "Diseño de personajes: protagonistas, antagonistas y rediseños.",
+    "colores": { "principal": "#ff8fb8", "secundario": "#e0558d" },
+    "portada": "img/as-symph.jpg",
+    "ajustePortada": "cubrir",
+    "encuadre": "centro",
+    "piezas": [
+      { "archivo": "img/as-symph.jpg", "titulo": "\"Symph\"", "subtitulo": "Concept de personaje", "enlace": "https://www.artstation.com/artwork/5vd6aP" },
+      { "archivo": "img/as-symph2.jpg", "titulo": "\"Symph\" interior / exterior", "subtitulo": "Concept de personaje", "enlace": "https://www.artstation.com/artwork/blBA3n" },
+      { "archivo": "img/as-rippaw.jpg", "titulo": "\"Rippaw\"", "subtitulo": "Antagonista", "enlace": "https://www.artstation.com/artwork/g0PA8E" },
+      { "archivo": "img/as-gravekeeper.jpg", "titulo": "\"The GraveKeeper\"", "subtitulo": "Protagonista", "enlace": "https://www.artstation.com/artwork/n04AY4" },
+      { "archivo": "img/as-tofuconcept.jpg", "titulo": "Tofu", "subtitulo": "Protagonista de Catography", "enlace": "https://www.artstation.com/artwork/g093KZ" },
+      { "archivo": "img/as-earthbound.jpg", "titulo": "Personajes de Earthbound", "subtitulo": "Rediseño", "enlace": "https://www.artstation.com/artwork/9ElZAL" },
+      { "archivo": "img/ca-thumbnails.jpg", "titulo": "Thumbnails", "subtitulo": "Exploración de siluetas", "enlace": "" },
+      { "archivo": "img/ca-expresiones.jpg", "titulo": "Expresiones", "subtitulo": "Hoja de expresiones", "enlace": "" },
+      { "archivo": "img/ca-turnaround.jpg", "titulo": "Turnaround", "subtitulo": "Vistas del personaje", "enlace": "" },
+      { "archivo": "img/ca-poses.jpg", "titulo": "Poses", "subtitulo": "Hoja de poses", "enlace": "" },
+      { "archivo": "img/ca-color.jpg", "titulo": "Pruebas de color", "subtitulo": "Variaciones", "enlace": "" },
+      { "archivo": "img/ca-lineart.jpg", "titulo": "Line art final", "subtitulo": "Personajes", "enlace": "" },
+      { "archivo": "img/ca-exterior.jpg", "titulo": "Exterior", "subtitulo": "Escenario", "enlace": "" },
+      { "archivo": "img/ca-exteriors.jpg", "titulo": "Exteriores", "subtitulo": "Thumbnails de escenario", "enlace": "" }
+    ]
+  },
+  {
+    "titulo": "Modelos 3D",
+    "genero": "Assets estilizados",
+    "descripcion": "Assets estilizados listos para usar en juego, con texturas pintadas a mano.",
+    "colores": { "principal": "#6fd6b8", "secundario": "#2ea88a" },
+    "portada": "img/as-troll.jpg",
+    "ajustePortada": "cubrir",
+    "encuadre": "centro",
+    "piezas": [
+      { "archivo": "img/as-laser.jpg", "titulo": "Pistola láser sci-fi", "subtitulo": "Asset para juego", "enlace": "https://www.artstation.com/artwork/w0GQK6" },
+      { "archivo": "img/as-troll.jpg", "titulo": "Troll de fantasía", "subtitulo": "Asset para juego", "enlace": "https://www.artstation.com/artwork/WBoowE" },
+      { "archivo": "img/as-cofre.jpg", "titulo": "Cofre del tesoro pirata", "subtitulo": "Asset para juego", "enlace": "https://www.artstation.com/artwork/lDQb6G" },
+      { "archivo": "img/as-gameboy.jpg", "titulo": "GameBoy pintada a mano", "subtitulo": "Hand-painted", "enlace": "https://www.artstation.com/artwork/rJ5Xkm" },
+      { "archivo": "img/3d-room.jpg", "titulo": "Habitación", "subtitulo": "Render en Maya", "enlace": "" },
+      { "archivo": "img/3d-nave.jpg", "titulo": "Nave espacial", "subtitulo": "Render en Maya", "enlace": "" }
+    ]
+  },
+  {
+    "titulo": "Animación",
+    "genero": "Rigging y animación",
+    "descripcion": "Rigging y animación de personajes para juego.",
+    "colores": { "principal": "#8fb4ff", "secundario": "#5277e8" },
+    "portada": "img/as-npcs.jpg",
+    "ajustePortada": "cubrir",
+    "encuadre": "centro",
+    "piezas": [
+      { "archivo": "img/as-npcs.jpg", "titulo": "Animaciones de NPCs", "subtitulo": "Catography", "enlace": "https://www.artstation.com/artwork/5vRdJO" },
+      { "archivo": "img/as-tofu3d.jpg", "titulo": "Tofu: modelado y animación", "subtitulo": "Proceso para Catography", "enlace": "https://www.artstation.com/artwork/39wQEA" },
+      { "archivo": "img/an-run.gif", "titulo": "Ciclo de carrera", "subtitulo": "Spine 2D", "enlace": "" },
+      { "archivo": "img/an-jump.gif", "titulo": "Salto", "subtitulo": "Spine 2D", "enlace": "" },
+      { "archivo": "img/an-loop.mp4", "titulo": "Loop de personaje", "subtitulo": "Animación", "enlace": "" },
+      { "archivo": "img/an-amumu.gif", "titulo": "Proceso: Amumu", "subtitulo": "De boceto a final", "enlace": "" },
+      { "archivo": "img/an-sirena.gif", "titulo": "Proceso: sirena", "subtitulo": "De boceto a final", "enlace": "" }
+    ]
+  },
+  {
+    "titulo": "Ilustración",
+    "genero": "Ilustración y fanart",
+    "descripcion": "Ilustraciones personales, fanarts y ejercicios de estilo.",
+    "colores": { "principal": "#7fb7ff", "secundario": "#4b6fd8" },
+    "portada": "img/il-sirena.jpg",
+    "ajustePortada": "cubrir",
+    "encuadre": "arriba",
+    "piezas": [
+      { "archivo": "img/il-sirena.jpg", "titulo": "Sirena", "subtitulo": "Ilustración", "enlace": "" },
+      { "archivo": "img/il-venom.jpg", "titulo": "Venom", "subtitulo": "Fanart", "enlace": "" },
+      { "archivo": "img/il-daredevil.jpg", "titulo": "Daredevil", "subtitulo": "Fanart", "enlace": "" },
+      { "archivo": "img/il-amumu.jpg", "titulo": "Amumu", "subtitulo": "Fanart", "enlace": "" },
+      { "archivo": "img/il-jsr.jpg", "titulo": "Jet Set Radio", "subtitulo": "Miniatura de reseña", "enlace": "" },
+      { "archivo": "img/il-cuadro.jpg", "titulo": "Viaje en barco", "subtitulo": "Ilustración", "enlace": "" },
+      { "archivo": "img/il-arte2.jpg", "titulo": "Historia del arte II", "subtitulo": "Reinterpretación", "enlace": "" },
+      { "archivo": "img/il-arte3.jpg", "titulo": "Historia del arte III", "subtitulo": "Reinterpretación", "enlace": "" },
+      { "archivo": "img/il-croqueta.png", "titulo": "Perro Croqueta", "subtitulo": "Pixel art", "enlace": "" }
+    ]
+  },
+  {
+    "titulo": "VFX",
+    "genero": "Efectos visuales 2D",
+    "descripcion": "Pruebas de efectos visuales animados: fuego, rayos y humo.",
+    "colores": { "principal": "#ffb35c", "secundario": "#ef6a2a" },
+    "portada": "img/vfx-cover.jpg",
+    "ajustePortada": "cubrir",
+    "encuadre": "centro",
+    "piezas": [
+      { "archivo": "img/vfx-fire.gif", "titulo": "Fuego", "subtitulo": "Prueba de VFX", "enlace": "" },
+      { "archivo": "img/vfx-light.gif", "titulo": "Rayo", "subtitulo": "Prueba de VFX", "enlace": "" },
+      { "archivo": "img/vfx-light3.gif", "titulo": "Rayo II", "subtitulo": "Prueba de VFX", "enlace": "" },
+      { "archivo": "img/vfx-smoke.gif", "titulo": "Humo", "subtitulo": "Prueba de VFX", "enlace": "" }
+    ]
+  },
+  {
+    "titulo": "Branding",
+    "genero": "Logos e identidad",
+    "descripcion": "Logotipos e identidad visual para estudios, equipos y marca personal.",
+    "colores": { "principal": "#c7c9cc", "secundario": "#7d8288" },
+    "portada": "img/br-koala.png",
+    "ajustePortada": "contener",
+    "encuadre": "centro",
+    "piezas": [
+      { "archivo": "img/br-koala.png", "titulo": "Koala in a Box", "subtitulo": "Logo de estudio", "enlace": "" },
+      { "archivo": "img/br-koala-lat.jpg", "titulo": "Koala in a Box", "subtitulo": "Versión horizontal", "enlace": "" },
+      { "archivo": "img/br-dr.png", "titulo": "Logotipo DR", "subtitulo": "Marca personal", "enlace": "" },
+      { "archivo": "img/br-rkna.jpg", "titulo": "RKNA", "subtitulo": "Grafiti", "enlace": "" },
+      { "archivo": "img/br-capitos.png", "titulo": "Los Mas Capitos", "subtitulo": "Logo", "enlace": "" },
+      { "archivo": "img/br-carribully.jpg", "titulo": "Team Carribully", "subtitulo": "Logo de equipo", "enlace": "" },
+      { "archivo": "img/br-niklaus.jpg", "titulo": "Niklaus Warriors", "subtitulo": "Logo de equipo", "enlace": "" }
+    ]
+  }
+]

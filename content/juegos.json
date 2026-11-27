@@ -1,0 +1,179 @@
+[
+  {
+    "titulo": "Denshattack!",
+    "anio": "2026",
+    "genero": "Plataformas 3D con trenes",
+    "motor": "",
+    "estudio": "Undercoders",
+    "publisher": "Fireshine Games",
+    "plataformas": "PC, PS5, Xbox Series X|S, Nintendo Switch 2",
+    "colores": { "principal": "#ff7a45", "secundario": "#e8414f" },
+    "cuadro": { "fondo": "img/t-dn-bg3.jpg", "logo": "img/t-dn-logo.png", "tamanoLogo": 82, "posicionLogo": "centro", "oscurecer": 18 },
+    "imagenDisco": "img/dn-keyart.jpg",
+    "trailer": { "url": "https://www.youtube.com/watch?v=1MUuSW4g0Bc", "titulo": "Release Date Trailer", "miniatura": "img/yt-1MUuSW4g0Bc.jpg" },
+    "descripcion": "Plataformas 3D a toda velocidad en el que conduces un tren que salta, derrapa y hace trucos. Desarrollado por Undercoders y publicado por Fireshine Games.",
+    "papel": "Artista 3D y Environment Artist",
+    "queHice": ["Blockout de escenarios", "Dressing de entornos", "Modelado 3D de elementos de escenario"],
+    "galeria": [
+      { "archivo": "img/dn-dressing.jpg", "titulo": "Dressing de un nivel", "enlace": "" },
+      { "archivo": "img/dn-molino.mp4", "titulo": "Molino: modelado 3D", "enlace": "" }
+    ],
+    "premios": [
+      { "resultado": "Ganador", "evento": "PANAX Indie Game Awards 2026", "categoria": "Best Sound and Music", "icono": "img/aw-panax.png" },
+      { "resultado": "Nominado", "evento": "The Game Awards 2026", "categoria": "Best Independent Game", "icono": "img/aw-tga.png" },
+      { "resultado": "Nominado", "evento": "Golden Joystick Awards 2026", "categoria": "Best Indie Game", "icono": "img/aw-gj.png" },
+      { "resultado": "4 nominaciones", "evento": "gamescom award 2026", "categoria": "Best Audio · Best Gameplay · Most Entertaining · Best Nintendo Switch 2 Game", "icono": "img/aw-gamescom.png" },
+      { "resultado": "Nominado", "evento": "PANAX Indie Game Awards 2026", "categoria": "Game of the Year · Best Visual Style", "icono": "img/aw-panax.png" }
+    ],
+    "notas": [
+      { "fuente": "Metacritic", "tipo": "metacritic", "valor": "88", "detalle": "48 críticas · «Generally Favorable»", "enlace": "https://www.metacritic.com/game/denshattack/" },
+      { "fuente": "Metacritic · usuarios", "tipo": "metacritic-usuarios", "valor": "8.4", "detalle": "223 valoraciones", "enlace": "https://www.metacritic.com/game/denshattack/" },
+      { "fuente": "OpenCritic", "tipo": "opencritic", "valor": "87", "detalle": "96 % de la crítica lo recomienda · 143 críticas", "enlace": "https://opencritic.com/game/20193/denshattack-" },
+      { "fuente": "Steam", "tipo": "steam", "valor": "98 %", "detalle": "Extremadamente positivas · 2.464 reseñas en inglés", "enlace": "https://store.steampowered.com/app/2524850/Denshattack/" }
+    ],
+    "herramientas": [],
+    "enlaces": [ { "texto": "Página del juego (Fireshine)", "url": "https://fireshinegames.co.uk/featured/denshattack/" } ]
+  },
+  {
+    "titulo": "Catography",
+    "anio": "",
+    "genero": "Plataformas collectathon 3D",
+    "motor": "Unity",
+    "estudio": "KoalaInABox y equipo",
+    "publisher": "",
+    "plataformas": "",
+    "colores": { "principal": "#7fd3f2", "secundario": "#3aa4dc" },
+    "cuadro": { "fondo": "img/t-cat-bg3.jpg", "logo": "img/t-cat-logo2.png", "tamanoLogo": 84, "posicionLogo": "arriba", "oscurecer": 0 },
+    "imagenDisco": "img/itch-catography.png",
+    "trailer": { "url": "https://www.youtube.com/watch?v=eafZiLuyh6w", "titulo": "Tráiler de itch.io", "miniatura": "img/yt-eafZiLuyh6w.jpg" },
+    "descripcion": "Eres Tofu, un gato explorador que ha encallado en una isla y decide cartografiarla. Plataformas de recolección con estética tierna y acogedora.",
+    "papel": "Artista generalista: concept, modelado 3D, texturizado, rigging y animación",
+    "queHice": ["Concept art de Tofu, el protagonista", "Modelado, texturizado, rig y animación de Tofu", "Animaciones de los gatos NPC de la isla"],
+    "galeria": [
+      { "archivo": "img/as-tofuconcept.jpg", "titulo": "Concept de Tofu", "enlace": "https://www.artstation.com/artwork/g093KZ" },
+      { "archivo": "img/as-tofu3d.jpg", "titulo": "Tofu en 3D", "enlace": "https://www.artstation.com/artwork/39wQEA" },
+      { "archivo": "img/as-npcs.jpg", "titulo": "Animaciones de NPCs", "enlace": "https://www.artstation.com/artwork/5vRdJO" },
+      { "archivo": "img/cat-logo.png", "titulo": "Logo provisional", "enlace": "" }
+    ],
+    "premios": [
+      { "resultado": "Ganador", "evento": "ENTI-UB Demoday '23", "categoria": "Premio del público 22-23", "icono": "img/aw-enti.png" }
+    ],
+    "notas": [
+      { "fuente": "itch.io", "tipo": "itch", "valor": "4,9 ★", "detalle": "14 valoraciones", "enlace": "https://koalainabox.itch.io/catography" }
+    ],
+    "herramientas": ["Blender", "Substance Painter", "Photoshop", "Unity"],
+    "enlaces": [
+      { "texto": "Jugar en itch.io", "url": "https://koalainabox.itch.io/catography" },
+      { "texto": "Tofu en ArtStation", "url": "https://www.artstation.com/artwork/39wQEA" }
+    ]
+  },
+  {
+    "titulo": "Chrono Fish",
+    "anio": "2024",
+    "genero": "Acción top-down en pixel art",
+    "motor": "Unity",
+    "estudio": "Olympia Studios (4 estudiantes)",
+    "publisher": "",
+    "plataformas": "",
+    "colores": { "principal": "#ffc94a", "secundario": "#f08a24" },
+    "cuadro": { "fondo": "img/t-cf-bg.jpg", "logo": "img/t-cf-logo.png", "tamanoLogo": 70, "posicionLogo": "centro", "oscurecer": 0 },
+    "imagenDisco": "img/itch-chronofish.png",
+    "trailer": { "url": "https://www.youtube.com/watch?v=g6t-Ix3g1V0", "titulo": "Release Trailer", "miniatura": "img/yt-g6t-Ix3g1V0.jpg" },
+    "descripcion": "Un pez viajero en el tiempo que no puede atacar: solo esquivar y hacer parry. La demo transcurre en un templo azteca y termina con el jefe Kukulkán, la serpiente emplumada.",
+    "papel": "Pixel artist y artista general del juego",
+    "queHice": ["Pixel art de personajes, enemigos y escenarios", "Animación de sprites", "Arte general del juego"],
+    "galeria": [
+      { "archivo": "img/cf-a.gif", "titulo": "Protagonista", "enlace": "https://franky-style.itch.io/chrono-fish" },
+      { "archivo": "img/cf-b.gif", "titulo": "Enemigo tótem", "enlace": "https://franky-style.itch.io/chrono-fish" },
+      { "archivo": "img/cf-c.gif", "titulo": "Enemigo", "enlace": "https://franky-style.itch.io/chrono-fish" },
+      { "archivo": "img/cf-4.png", "titulo": "Jefe: Kukulkán", "enlace": "https://franky-style.itch.io/chrono-fish" },
+      { "archivo": "img/cf-2.png", "titulo": "Sala del templo", "enlace": "https://franky-style.itch.io/chrono-fish" },
+      { "archivo": "img/cf-1.png", "titulo": "Menú principal", "enlace": "https://franky-style.itch.io/chrono-fish" },
+      { "archivo": "img/cf-flyer.jpg", "titulo": "Flyer (frontal)", "enlace": "" },
+      { "archivo": "img/cf-flyer2.jpg", "titulo": "Flyer (trasero)", "enlace": "" }
+    ],
+    "premios": [],
+    "notas": [
+      { "fuente": "itch.io", "tipo": "itch", "valor": "3,5 ★", "detalle": "2 valoraciones", "enlace": "https://franky-style.itch.io/chrono-fish" }
+    ],
+    "herramientas": ["Aseprite"],
+    "enlaces": [ { "texto": "Jugar en itch.io", "url": "https://franky-style.itch.io/chrono-fish" } ]
+  },
+  {
+    "titulo": "Untitled Project",
+    "anio": "",
+    "genero": "Puzles en primera persona",
+    "motor": "Unreal Engine",
+    "estudio": "Equipo de 4 personas",
+    "publisher": "",
+    "plataformas": "",
+    "colores": { "principal": "#ff9a3c", "secundario": "#f2661f" },
+    "cuadro": { "fondo": "img/t-up-bg.jpg", "logo": "img/t-up-logo.png", "tamanoLogo": 66, "posicionLogo": "centro", "oscurecer": 45 },
+    "imagenDisco": "img/itch-untitled.png",
+    "trailer": { "url": "https://www.youtube.com/watch?v=8kLaOsb12aU", "titulo": "Teaser Trailer", "miniatura": "img/yt-8kLaOsb12aU.jpg" },
+    "descripcion": "Estás atrapado dentro de un videojuego abandonado y corrupto. Para escapar usas \"exploits\" que activan o desactivan la física, las colisiones, la visibilidad y la animación de los objetos.",
+    "papel": "Artista 3D, VFX, Tech Art y diseño de niveles",
+    "queHice": ["Arte 3D y efectos visuales de la corrupción", "Tech Art y diseño de niveles", "Bocetos de concept art del proyecto"],
+    "galeria": [
+      { "archivo": "img/as-doodles.jpg", "titulo": "Bocetos de concept", "enlace": "https://www.artstation.com/artwork/OGBX28" },
+      { "archivo": "img/up-doodle.jpg", "titulo": "Bocetos de personajes", "enlace": "" },
+      { "archivo": "img/up-doodle2.jpg", "titulo": "Bocetos de personajes", "enlace": "" }
+    ],
+    "premios": [
+      { "resultado": "Ganador", "evento": "ENTI-UB Demoday '22", "categoria": "Best of 2n CAVJA · mejor juego de 2.º", "icono": "img/aw-enti.png" },
+      { "resultado": "Ganador", "evento": "ENTI-UB Demoday '23 · 10 años", "categoria": "Best of CAVJA · mejor juego de los 10 años del grado", "icono": "img/aw-enti.png" }
+    ],
+    "notas": [
+      { "fuente": "itch.io", "tipo": "itch", "valor": "4,5 ★", "detalle": "4 valoraciones", "enlace": "https://ramon-matas.itch.io/untitled-project" }
+    ],
+    "herramientas": ["Unreal Engine", "Blender", "Substance Painter"],
+    "enlaces": [
+      { "texto": "Jugar en itch.io", "url": "https://ramon-matas.itch.io/untitled-project" },
+      { "texto": "Bocetos en ArtStation", "url": "https://www.artstation.com/artwork/OGBX28" }
+    ]
+  },
+  {
+    "titulo": "Light on Time",
+    "anio": "",
+    "genero": "Plataformas · Game jam de 48 h",
+    "motor": "Unity",
+    "estudio": "Equipo de 3 personas",
+    "publisher": "",
+    "plataformas": "",
+    "colores": { "principal": "#5aa8ff", "secundario": "#2f5fd8" },
+    "cuadro": { "fondo": "img/t-lot-bg.jpg", "logo": "img/t-lot-logo.png", "tamanoLogo": 62, "posicionLogo": "centro", "oscurecer": 0 },
+    "imagenDisco": "img/itch-lightontime.png",
+    "trailer": { "url": "https://www.youtube.com/watch?v=GyDNhcqSBAo", "titulo": "Gameplay de la comunidad", "miniatura": "img/yt-GyDNhcqSBAo.jpg" },
+    "descripcion": "Eres un faro que llega tarde a su primer día de trabajo. Hecho en 48 horas para una game jam con el tema \"Isla\": todo está a oscuras hasta que el faro llega a su sitio.",
+    "papel": "Rigger y animador 3D",
+    "queHice": ["Rig del personaje faro", "Animaciones del protagonista"],
+    "galeria": [],
+    "premios": [],
+    "notas": [
+      { "fuente": "itch.io", "tipo": "itch", "valor": "5,0 ★", "detalle": "1 valoración", "enlace": "https://rkna.itch.io/light-on-time" }
+    ],
+    "herramientas": ["Blender", "Unity"],
+    "enlaces": [ { "texto": "Jugar en itch.io", "url": "https://rkna.itch.io/light-on-time" } ]
+  },
+  {
+    "titulo": "Platform",
+    "anio": "",
+    "genero": "Puzles · Proyecto de una semana",
+    "motor": "Unreal Engine",
+    "estudio": "Proyecto de universidad",
+    "publisher": "",
+    "plataformas": "",
+    "colores": { "principal": "#c58cff", "secundario": "#8a4fe0" },
+    "cuadro": { "fondo": "img/t-pl-bg.jpg", "logo": "img/t-pl-logo.png", "tamanoLogo": 80, "posicionLogo": "centro", "oscurecer": 0 },
+    "imagenDisco": "img/itch-platform.png",
+    "trailer": { "url": "", "titulo": "", "miniatura": "" },
+    "descripcion": "Escapa de un laboratorio con una pistola que cambia las plataformas: azul las convierte en trampolín, amarillo las extruye y fucsia genera un cubo.",
+    "papel": "Proyecto individual",
+    "queHice": ["Juego completo hecho en una semana"],
+    "galeria": [],
+    "premios": [],
+    "notas": [],
+    "herramientas": [],
+    "enlaces": [ { "texto": "Jugar en itch.io", "url": "https://rkna.itch.io/platform" } ]
+  }
+]

@@ -1,0 +1,347 @@
+# Panel de edición del portfolio (Pages CMS · https://app.pagescms.org)
+# Cada sección del panel edita uno de los archivos de la carpeta "content".
+
+media:
+  - name: imagenes
+    label: Imágenes y vídeos
+    input: img
+    output: img
+    rename: safe
+    categories: [image, video]
+  - name: documentos
+    label: Documentos (CV)
+    input: docs
+    output: docs
+    categories: [document]
+
+components:
+  colores:
+    type: object
+    label: Colores
+    description: "Colores en formato #RRGGBB (se usan en el estuche, el disco y los detalles)."
+    fields:
+      - name: principal
+        label: Color principal
+        type: string
+        pattern:
+          regex: "^#[0-9a-fA-F]{6}$"
+          message: "Escribe un color como #ff7a45"
+      - name: secundario
+        label: Color secundario
+        type: string
+        pattern:
+          regex: "^#[0-9a-fA-F]{6}$"
+          message: "Escribe un color como #e8414f"
+
+content:
+  # ---------------------------------------------------------------- JUEGOS
+  - name: juegos
+    label: Juegos
+    type: file
+    path: content/juegos.json
+    format: json
+    list: true
+    fields:
+      - name: titulo
+        label: Título
+        type: string
+        required: true
+        description: El orden de la lista es el orden en que salen los juegos en la web.
+      - name: anio
+        label: Año
+        type: string
+      - name: genero
+        label: Género
+        type: string
+      - name: motor
+        label: Motor
+        type: string
+        description: Unity, Unreal Engine… (opcional)
+      - name: estudio
+        label: Estudio o equipo
+        type: string
+      - name: publisher
+        label: Publisher
+        type: string
+      - name: plataformas
+        label: Plataformas
+        type: string
+      - name: colores
+        component: colores
+      - name: cuadro
+        label: Cuadro del menú
+        type: object
+        description: El cuadrado que se ve en la cuadrícula. Fondo sin logo + logo PNG transparente encima.
+        fields:
+          - name: fondo
+            label: Imagen de fondo
+            type: image
+            options: { media: imagenes }
+          - name: logo
+            label: Logo (PNG transparente)
+            type: image
+            options: { media: imagenes }
+          - name: tamanoLogo
+            label: Tamaño del logo (% del ancho)
+            type: number
+            options: { min: 20, max: 100 }
+          - name: posicionLogo
+            label: Posición del logo
+            type: select
+            options:
+              values:
+                - { name: centro, label: Centro }
+                - { name: arriba, label: Arriba }
+                - { name: abajo, label: Abajo }
+          - name: oscurecer
+            label: Oscurecer el fondo (0-100)
+            type: number
+            description: Sube este número si el logo no se lee bien sobre el fondo.
+            options: { min: 0, max: 90 }
+      - name: imagenDisco
+        label: Imagen del disco
+        type: image
+        description: La ilustración que se ve impresa en el CD al abrir el estuche.
+        options: { media: imagenes }
+      - name: trailer
+        label: Tráiler
+        type: object
+        fields:
+          - name: url
+            label: Enlace de YouTube
+            type: string
+            description: Pega el enlace del vídeo (por ejemplo https://www.youtube.com/watch?v=...). Déjalo vacío si no hay tráiler.
+          - name: titulo
+            label: Título del vídeo
+            type: string
+          - name: miniatura
+            label: Miniatura (opcional)
+            type: image
+            description: Si no pones ninguna, se usa la de YouTube.
+            options: { media: imagenes }
+      - name: descripcion
+        label: Descripción del juego
+        type: text
+      - name: papel
+        label: Mi papel
+        type: string
+      - name: queHice
+        label: Qué hice
+        type: string
+        list: true
+      - name: galeria
+        label: Arte del proyecto (galería)
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{titulo}"
+        fields:
+          - name: archivo
+            label: Imagen, GIF o vídeo MP4
+            type: file
+            options: { media: imagenes, categories: [image, video] }
+          - name: titulo
+            label: Título
+            type: string
+          - name: enlace
+            label: Enlace (opcional)
+            type: string
+            description: Si lo dejas vacío, la imagen se amplía al pulsarla.
+      - name: premios
+        label: Premios y nominaciones
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{evento} · {resultado}"
+        fields:
+          - name: resultado
+            label: Resultado
+            type: string
+            description: Escribe "Ganador" para que salga en dorado. También vale "Nominado", "4 nominaciones"…
+          - name: evento
+            label: Premio o evento
+            type: string
+          - name: categoria
+            label: Categoría
+            type: string
+          - name: icono
+            label: Icono del premio
+            type: image
+            options: { media: imagenes }
+      - name: notas
+        label: Crítica y jugadores
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{fuente} · {valor}"
+        fields:
+          - name: fuente
+            label: Web
+            type: string
+          - name: tipo
+            label: Estilo del sello
+            type: select
+            options:
+              values:
+                - { name: metacritic, label: Metacritic (crítica) }
+                - { name: metacritic-usuarios, label: Metacritic (usuarios) }
+                - { name: opencritic, label: OpenCritic }
+                - { name: steam, label: Steam }
+                - { name: itch, label: itch.io }
+                - { name: otra, label: Otra }
+          - name: valor
+            label: Nota
+            type: string
+          - name: detalle
+            label: Detalle
+            type: string
+            description: Por ejemplo "48 críticas" o "14 valoraciones".
+          - name: enlace
+            label: Enlace
+            type: string
+      - name: herramientas
+        label: Herramientas
+        type: string
+        list: true
+      - name: enlaces
+        label: Botones de enlace
+        type: object
+        list: true
+        fields:
+          - name: texto
+            label: Texto del botón
+            type: string
+          - name: url
+            label: Enlace
+            type: string
+
+  # ---------------------------------------------------------------- ARTE
+  - name: arte
+    label: Arte
+    type: file
+    path: content/arte.json
+    format: json
+    list: true
+    fields:
+      - name: titulo
+        label: Título de la sección
+        type: string
+        required: true
+      - name: genero
+        label: Subtítulo
+        type: string
+      - name: descripcion
+        label: Descripción
+        type: text
+      - name: colores
+        component: colores
+      - name: portada
+        label: Imagen del cuadro
+        type: image
+        options: { media: imagenes }
+      - name: ajustePortada
+        label: Cómo encaja la imagen
+        type: select
+        options:
+          values:
+            - { name: cubrir, label: Llenar el cuadro (recorta los bordes) }
+            - { name: contener, label: Imagen entera (para logos) }
+      - name: encuadre
+        label: Parte de la imagen que se ve
+        type: select
+        options:
+          values:
+            - { name: centro, label: Centro }
+            - { name: arriba, label: Arriba }
+            - { name: abajo, label: Abajo }
+      - name: piezas
+        label: Piezas
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{titulo}"
+        fields:
+          - name: archivo
+            label: Imagen, GIF o vídeo MP4
+            type: file
+            options: { media: imagenes, categories: [image, video] }
+          - name: titulo
+            label: Título
+            type: string
+          - name: subtitulo
+            label: Subtítulo
+            type: string
+          - name: enlace
+            label: Enlace (opcional)
+            type: string
+            description: Por ejemplo, su página de ArtStation. Si lo dejas vacío, la imagen se amplía al pulsarla.
+
+  # ---------------------------------------------------------------- PERFIL
+  - name: perfil
+    label: Perfil, Sobre mí y Contacto
+    type: file
+    path: content/perfil.json
+    format: json
+    fields:
+      - name: nombre
+        label: Nombre
+        type: string
+      - name: profesion
+        label: Profesión
+        type: string
+      - name: ciudad
+        label: Ciudad
+        type: string
+      - name: avatar
+        label: Foto de perfil
+        type: image
+        options: { media: imagenes }
+      - name: cv
+        label: CV (PDF)
+        type: file
+        options: { media: documentos, categories: [document] }
+      - name: colores
+        component: colores
+      - name: bio
+        label: Sobre mí
+        type: text
+        description: Deja una línea en blanco para separar párrafos.
+      - name: idiomas
+        label: Idiomas
+        type: string
+      - name: especialidades
+        label: Especialidades
+        type: string
+        list: true
+      - name: software
+        label: Software
+        type: string
+        list: true
+      - name: equipo
+        label: Trabajo en equipo
+        type: string
+        list: true
+      - name: disponibilidad
+        label: Disponibilidad
+        type: string
+      - name: mensajeContacto
+        label: Mensaje de contacto
+        type: text
+      - name: email
+        label: Correo
+        type: string
+      - name: redes
+        label: Redes
+        type: object
+        list: true
+        fields:
+          - name: texto
+            label: Texto
+            type: string
+          - name: url
+            label: Enlace
+            type: string
