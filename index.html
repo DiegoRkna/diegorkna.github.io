@@ -593,14 +593,16 @@ const order = Object.keys(tiles).map(Number);
 
 const selTitle=document.getElementById('sel-title'), selMeta=document.getElementById('sel-meta');
 let sel=-1;
+/* el borde azul se queda en el último cuadro elegido, sea un juego o una cinta */
+function markSel(el){ document.querySelectorAll('.tile.is-sel').forEach(t=>{ if(t!==el) t.classList.remove('is-sel'); }); el.classList.add('is-sel'); }
 function metaOf(it){
   if(it.kind==='game') return [it.year,it.genre,it.role].filter(Boolean).join(' · ');
   if(it.kind==='art') return `${it.genre} · ${it.pieces.length} piezas`;
   return '';
 }
 function select(i,{focus=false,sound=true}={}){
-  if(i===sel) return; if(sel>=0&&tiles[sel]) tiles[sel].classList.remove('is-sel');
-  sel=i; tiles[i].classList.add('is-sel'); if(focus) tiles[i].focus();
+  if(i===sel && tiles[i].classList.contains('is-sel')) return;
+  markSel(tiles[i]); sel=i; if(focus) tiles[i].focus();
   if(ITEMS[i].discFull) iriMask(ITEMS[i].discFull);
   selTitle.textContent=ITEMS[i].title; selMeta.textContent=metaOf(ITEMS[i]);
   if(sound) tone([1320],.05,.02);
@@ -936,7 +938,11 @@ if (VIDS.length) {
   VIDS.forEach(v => {
     const b = document.createElement('button'); b.type = 'button'; b.className = 'tile vhs-tile'; b.setAttribute('aria-label', 'Ver ' + v.title);
     b.innerHTML = `<span class="frame">${vhsHTML(v)}</span><span class="caption"><span class="vt">${v.title}</span><small>${[v.date, v.dur].filter(Boolean).join(' · ')}</small></span>`;
-    b.addEventListener('mouseenter', () => tone([1175], .04, .02));
+    const pick = snd => { if (b.classList.contains('is-sel')) return; markSel(b);
+      selTitle.textContent = v.title; selMeta.textContent = ['YouTube', v.date, v.dur].filter(Boolean).join(' · ');
+      if (snd) tone([1320], .05, .02); };
+    b.addEventListener('mouseenter', () => pick(true));
+    b.addEventListener('focus', () => pick(false));
     b.addEventListener('click', () => playTape(b, v));
     grid.appendChild(b);
   });
