@@ -5,6 +5,7 @@
   "avatar": "img/avatar.png",
   "cv": "docs/cv.pdf",
   "mostrarArte": false,
+  "filtroCRT": true,
   "colores": {
     "principal": "#f0a070",
     "secundario": "#e97f45"
