@@ -4,18 +4,57 @@
   "ciudad": "Barcelona",
   "avatar": "img/avatar.png",
   "cv": "docs/cv.pdf",
-  "colores": { "principal": "#f0a070", "secundario": "#e97f45" },
+  "colores": {
+    "principal": "#f0a070",
+    "secundario": "#e97f45"
+  },
   "bio": "Soy artista digital generalista y mi objetivo es trabajar en la industria del videojuego como Game Artist, sobre todo en animación 2D / 3D y concept art. También tengo experiencia en modelado, texturizado, rigging, Tech Art y VFX.\n\nMe gusta analizar videojuegos y crear experiencias nuevas para los jugadores, sobre todo la parte artística: elegir el look & feel que mejor encaja con cada juego y hacerlo realidad.",
   "idiomas": "Español · Catalán · Inglés B2",
-  "especialidades": ["Animación 2D / 3D", "Concept art", "Modelado 3D", "Texturizado", "Rigging", "Tech Art", "VFX"],
-  "software": ["Photoshop", "Illustrator", "Substance Painter", "Substance Designer", "3ds Max", "Maya", "Blender", "ZBrush", "Unreal Engine 4 / 5", "Unity", "Spine", "Aseprite"],
-  "equipo": ["Jira", "Confluence", "Bitbucket", "Sourcetree", "GitKraken"],
+  "especialidades": [
+    "Animación 2D / 3D",
+    "Concept art",
+    "Modelado 3D",
+    "Texturizado",
+    "Rigging",
+    "Tech Art",
+    "VFX"
+  ],
+  "software": [
+    "Photoshop",
+    "Illustrator",
+    "Substance Painter",
+    "Substance Designer",
+    "3ds Max",
+    "Maya",
+    "Blender",
+    "ZBrush",
+    "Unreal Engine 4 / 5",
+    "Unity",
+    "Spine",
+    "Aseprite"
+  ],
+  "equipo": [
+    "Jira",
+    "Confluence",
+    "Bitbucket",
+    "Sourcetree",
+    "GitKraken"
+  ],
   "disponibilidad": "Abierto a jornada completa, contrato y freelance",
-  "mensajeContacto": "Si buscas un artista 2D / 3D para tu juego, escríbeme y te respondo lo antes posible.",
+  "mensajeContacto": "Si buscas un artista 2D / 3D para tu juego, escríbeme y te respondo lo antes posible.A",
   "email": "rknaoficial@gmail.com",
   "redes": [
-    { "texto": "ArtStation", "url": "https://www.artstation.com/rkna" },
-    { "texto": "itch.io", "url": "https://rkna.itch.io/" },
-    { "texto": "X · @RknaTV", "url": "https://x.com/RknaTV" }
+    {
+      "texto": "ArtStation",
+      "url": "https://www.artstation.com/rkna"
+    },
+    {
+      "texto": "itch.io",
+      "url": "https://rkna.itch.io/"
+    },
+    {
+      "texto": "X · @RknaTV",
+      "url": "https://x.com/RknaTV"
+    }
   ]
 }
