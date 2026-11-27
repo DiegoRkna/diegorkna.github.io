@@ -103,8 +103,8 @@ a.ico{text-decoration:none;color:inherit}
 .box{position:absolute;inset:0;transform-style:preserve-3d}
 .face{position:absolute;left:0;top:0;backface-visibility:hidden}
 .f-lid{width:var(--w);height:var(--h);transform-origin:left center;transform-style:preserve-3d;transform:translateZ(calc(var(--d) / 2))}
-.lid-front,.lid-back{position:absolute;inset:0;backface-visibility:hidden;border-radius:14px;overflow:hidden}
-.lid-front{background:var(--tile);padding:9px;box-shadow:inset 0 2px 0 rgba(255,255,255,.9),0 0 0 1px #e1e2e4}
+.lid-front,.lid-back{position:absolute;inset:0;backface-visibility:hidden;border-radius:calc(var(--w) * .082);overflow:hidden}
+.lid-front{background:var(--tile);padding:calc(var(--w) * .053);box-shadow:inset 0 2px 0 rgba(255,255,255,.9),0 0 0 1px #e1e2e4}
 .lid-back{transform:rotateY(180deg);background:#f2f3f4;container-type:size;display:grid;place-items:center;
   box-shadow:inset 0 0 0 1px var(--line),inset 0 0 0 7px #fafafa}
 .lid-back::before,.lid-back::after{content:"";position:absolute;right:4%;width:4.5%;height:13%;border-radius:3px;background:#d4d6d9;box-shadow:inset 0 1px 0 #fff}
@@ -123,7 +123,7 @@ a.ico{text-decoration:none;color:inherit}
 .m-lines i:nth-child(2){width:82%}
 .m-lines i:nth-child(3){width:58%}
 .m-foot{display:flex;justify-content:space-between;font:700 3.4cqw/1 var(--f-display);color:var(--muted)}
-.f-inside{width:var(--w);height:var(--h);transform:translateZ(calc(var(--d) / 2 - 1px));border-radius:14px;background:#f6f6f6;
+.f-inside{width:var(--w);height:var(--h);transform:translateZ(calc(var(--d) / 2 - 1px));border-radius:calc(var(--w) * .082);background:#f6f6f6;
   display:grid;place-items:center;align-content:center;gap:10px;box-shadow:inset 0 0 0 1px var(--line),inset 0 0 0 8px #fbfbfb}
 /* disco: ilustración arriba, franja negra con datos y parte plateada irisada abajo */
 .disc-wrap{width:86%;aspect-ratio:1;position:relative}
@@ -158,7 +158,7 @@ a.ico{text-decoration:none;color:inherit}
   background:radial-gradient(circle,transparent 0 31%,rgba(140,145,150,.9) 31.5% 33.5%,rgba(255,255,255,.35) 34% 54%,rgba(170,175,180,.6) 54.5% 56%,
     rgba(255,255,255,.28) 56.5% 61%,rgba(170,175,180,.7) 61.5% 63%,rgba(255,255,255,.4) 63.5% 92%,rgba(170,175,180,.7) 92.5% 94%,rgba(255,255,255,.45) 94.5% 98%,rgba(150,155,160,.9) 98.5% 100%)}
 @keyframes spin{to{transform:rotate(360deg)}}
-.f-back{width:var(--w);height:var(--h);transform:rotateY(180deg) translateZ(calc(var(--d) / 2));border-radius:14px;background:#f1f1f1;box-shadow:inset 0 0 0 1px var(--line)}
+.f-back{width:var(--w);height:var(--h);transform:rotateY(180deg) translateZ(calc(var(--d) / 2));border-radius:calc(var(--w) * .082);background:#f1f1f1;box-shadow:inset 0 0 0 1px var(--line)}
 .f-left,.f-right{width:var(--d);height:var(--h);left:calc((var(--w) - var(--d)) / 2);background:linear-gradient(90deg,#f7f7f7,#dcdddf)}
 .f-left{transform:rotateY(-90deg) translateZ(calc(var(--w) / 2))}
 .f-right{transform:rotateY(90deg) translateZ(calc(var(--w) / 2))}
@@ -511,7 +511,8 @@ const manualHTML = it => { const pic=manualPic(it);
     <div class="m-foot"><span>Diego Requena</span><span>p. 1</span></div></div>`; };
 function dressBox(i){
   const it=ITEMS[i], r=tiles[i].querySelector('.frame').getBoundingClientRect();
-  const W=r.width, H=r.height, D=Math.max(10,Math.round(W*.08));
+  const vw=innerWidth, vh=innerHeight, s=Math.min(vh*.5/r.height, vw*.42/r.width, 1.9);
+  const W=r.width*s, H=r.height*s, D=Math.max(10,Math.round(W*.08));
   fly.style.cssText=`--w:${W}px;--h:${H}px;--d:${D}px;${vars(it)}`;
   document.getElementById('lid-front').innerHTML=artHTML(it);
   document.getElementById('lid-back').innerHTML=manualHTML(it);
@@ -522,9 +523,8 @@ function dressBox(i){
     <div class="d-art"></div>
     <div class="d-band"><span class="mk">DR</span><span class="cd"><b>${code}</b>MADE IN BARCELONA</span><span class="dk">disc<small>PORTFOLIO</small></span></div>
     <div class="d-foot"><strong>RKNA</strong><span>© ${it.year||2026} Diego Requena</span></div><div class="d-rim"></div></div>`) + `<div class="d-hub"></div></div>`;
-  const vw=innerWidth, vh=innerHeight, s=Math.min(vh*.5/H, vw*.42/W, 1.9);
-  // abierto, el estuche ocupa dos anchos (tapa + disco): se centra el conjunto
-  return {W,H,D,s,x0:r.left,y0:r.top,x1:vw/2-W/2+W*s*0.47,y1:vh/2-H/2};
+  // k = escala para que coincida con el cuadro; abierto ocupa dos anchos (tapa + disco): se centra el conjunto
+  return {W,H,D,s,k:1/s,z:80*s,x0:r.left+r.width/2-W/2,y0:r.top+r.height/2-H/2,x1:vw/2-W/2+W*0.47,y1:vh/2-H/2};
 }
 const ease='cubic-bezier(.2,.7,.2,1)';
 const anim=(el,kf,dur,e=ease)=>el.animate(kf,{duration:dur,easing:e,fill:'forwards'}).finished;
@@ -544,16 +544,16 @@ async function openItem(i, fromTile){
     markOut(-1); const g=dressBox(i); markOut(i);
     clearAnims(); stage.hidden=false;
     const lz=`translateZ(${g.D/2}px)`; lid.style.transform=lz+' rotateY(0deg)';
-    await Promise.all([anim(fly,[{transform:`translate(${g.x0}px,${g.y0}px)`},{transform:`translate(${g.x0}px,${g.y0-10}px)`}],200),
-                       anim(box,[{transform:'translateZ(0px)'},{transform:'translateZ(80px)'}],200)]);
-    await Promise.all([anim(fly,[{transform:`translate(${g.x0}px,${g.y0-10}px) scale(1)`},{transform:`translate(${g.x1}px,${g.y1}px) scale(${g.s})`}],640),
-                       anim(box,[{transform:'translateZ(80px)'},{transform:TILT}],640)]);
+    await Promise.all([anim(fly,[{transform:`translate(${g.x0}px,${g.y0}px) scale(${g.k})`},{transform:`translate(${g.x0}px,${g.y0-10}px) scale(${g.k})`}],200),
+                       anim(box,[{transform:'translateZ(0px)'},{transform:`translateZ(${g.z}px)`}],200)]);
+    await Promise.all([anim(fly,[{transform:`translate(${g.x0}px,${g.y0-10}px) scale(${g.k})`},{transform:`translate(${g.x1}px,${g.y1}px) scale(1)`}],640),
+                       anim(box,[{transform:`translateZ(${g.z}px)`},{transform:TILT}],640)]);
     tone([659,880],.07);
     await Promise.all([anim(lid,[{transform:lz+' rotateY(0deg)'},{transform:lz+' rotateY(-150deg)'}],540,'cubic-bezier(.3,1.25,.5,1)'),
                        anim(box,[{transform:TILT},{transform:OPEN}],540)]);
     await wait(320);
     render(i);
-    anim(fly,[{transform:`translate(${g.x1}px,${g.y1}px) scale(${g.s})`,opacity:1},{transform:`translate(${g.x1}px,${g.y1}px) scale(${g.s*1.4})`,opacity:0}],320);
+    anim(fly,[{transform:`translate(${g.x1}px,${g.y1}px) scale(1)`,opacity:1},{transform:`translate(${g.x1}px,${g.y1}px) scale(1.4)`,opacity:0}],320);
     await screenOn();
     stage.hidden=true; clearAnims();
   } else { markOut(i); render(i); await screenOn(); }
@@ -567,13 +567,13 @@ async function closeItem(){
     markOut(-1); const g=dressBox(i); markOut(i);
     clearAnims(); stage.hidden=false;
     const lz=`translateZ(${g.D/2}px)`;
-    fly.style.transform=`translate(${g.x1}px,${g.y1}px) scale(${g.s})`;
+    fly.style.transform=`translate(${g.x1}px,${g.y1}px) scale(1)`;
     await Promise.all([anim(lid,[{transform:lz+' rotateY(-150deg)'},{transform:lz+' rotateY(0deg)'}],300),
                        anim(box,[{transform:OPEN},{transform:TILT}],300)]);
-    await Promise.all([anim(fly,[{transform:`translate(${g.x1}px,${g.y1}px) scale(${g.s})`},{transform:`translate(${g.x0}px,${g.y0-10}px) scale(1)`}],520),
-                       anim(box,[{transform:TILT},{transform:'translateZ(80px)'}],520)]);
-    await Promise.all([anim(fly,[{transform:`translate(${g.x0}px,${g.y0-10}px)`},{transform:`translate(${g.x0}px,${g.y0}px)`}],180),
-                       anim(box,[{transform:'translateZ(80px)'},{transform:'translateZ(0px)'}],180)]);
+    await Promise.all([anim(fly,[{transform:`translate(${g.x1}px,${g.y1}px) scale(1)`},{transform:`translate(${g.x0}px,${g.y0-10}px) scale(${g.k})`}],520),
+                       anim(box,[{transform:TILT},{transform:`translateZ(${g.z}px)`}],520)]);
+    await Promise.all([anim(fly,[{transform:`translate(${g.x0}px,${g.y0-10}px) scale(${g.k})`},{transform:`translate(${g.x0}px,${g.y0}px) scale(${g.k})`}],180),
+                       anim(box,[{transform:`translateZ(${g.z}px)`},{transform:'translateZ(0px)'}],180)]);
     stage.hidden=true; clearAnims(); fly.style.transform='';
   }
   markOut(-1); current=-1; setHash('');
