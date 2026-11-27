@@ -344,10 +344,6 @@ content:
         label: Mostrar la sección Arte
         type: boolean
         description: Desactívalo para ocultar la sección Arte de la web sin borrar su contenido.
-      - name: filtroCRT
-        label: Filtro de tele antigua (CRT)
-        type: boolean
-        description: Scanlines y curvatura suave por encima de toda la web.
       - name: colores
         component: colores
       - name: bio
