@@ -69,33 +69,34 @@ a.ico{text-decoration:none;color:inherit}
 
 /* ---------- cintas VHS ---------- */
 .vhs-grid{grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
-.tile.vhs-tile .frame{aspect-ratio:auto;padding:12px}
-.vhs{position:relative;width:100%;aspect-ratio:188/104;border-radius:5.5%/10%;container-type:inline-size;
-  background:linear-gradient(180deg,#34363a,#202124 55%,#1a1b1d);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),inset 0 -2px 0 rgba(0,0,0,.4),0 6px 14px -8px rgba(0,0,0,.5)}
-.vhs::before,.vhs::after{content:"";position:absolute;width:2.6cqw;height:2.6cqw;border-radius:50%;top:4cqw;
-  background:radial-gradient(circle,#55585e 30%,#2a2b2e 32%);box-shadow:inset 0 0 0 .3cqw #111}
-.vhs::before{left:3.5cqw}
-.vhs::after{right:3.5cqw}
-.vhs-label{position:absolute;left:11%;right:11%;top:7%;height:52%;border-radius:1.4cqw;background:#f4f1e8;padding:1.6cqw 1.6cqw 0;
-  display:flex;flex-direction:column;gap:1cqw;box-shadow:0 .4cqw 1cqw rgba(0,0,0,.35)}
-.vhs-thumb{flex:1;min-height:0;border-radius:.8cqw;background:#111 center/cover no-repeat;box-shadow:inset 0 0 0 1px rgba(0,0,0,.15)}
-.vhs-strip{height:4.4cqw;display:flex;align-items:center;justify-content:space-between;padding:0 .6cqw;font:800 2.6cqw/1 var(--f-display);color:#2b2c30;letter-spacing:.06em}
-.vhs-strip i{display:block;height:1.6cqw;flex:1;margin:0 1.6cqw;border-radius:1cqw;background:linear-gradient(90deg,#ff5d5d,#ffb84d,#ffe35c,#5fd98a,#4fb4ff)}
-.vhs-window{position:absolute;left:25%;right:25%;top:65%;height:24%;border-radius:2cqw;background:linear-gradient(180deg,rgba(20,22,24,.95),rgba(42,44,48,.95));
-  box-shadow:inset 0 0 0 .5cqw #111,inset 0 1cqw 2cqw rgba(0,0,0,.6);overflow:hidden}
-.vhs-window::before{content:"";position:absolute;left:18%;right:18%;top:38%;height:24%;background:#3a2a20;opacity:.9}
-.reel{position:absolute;top:6%;height:88%;aspect-ratio:1;border-radius:50%;
-  background:radial-gradient(circle,#18191b 0 11%,#f2f2f2 12% 44%,#4a3426 45% 70%,#2c1e15 71% 100%)}
-.reel::after{content:"";position:absolute;inset:14%;border-radius:50%;
-  background:repeating-conic-gradient(from 10deg,rgba(24,25,27,.85) 0 22deg,transparent 22deg 60deg);
-  -webkit-mask:radial-gradient(circle,transparent 0 30%,#000 31% 95%,transparent 96%);mask:radial-gradient(circle,transparent 0 30%,#000 31% 95%,transparent 96%)}
-.reel.l{left:6%}
-.reel.r{right:6%}
-.vhs-tile:hover .reel,.vhs-tile:focus-visible .reel,.vhs.playing .reel{animation:reel-spin 1.6s linear infinite}
-.vhs.playing .reel{animation-duration:.5s}
+.tile.vhs-tile .frame{aspect-ratio:auto;padding:0;background:none;box-shadow:none;border-radius:1.4%/2.5%}
+.tile.vhs-tile .frame::after{border-radius:12px}
+.vhs{position:relative;width:100%;aspect-ratio:178/100;border-radius:1.6cqw;container-type:inline-size;overflow:hidden;
+  background:repeating-linear-gradient(180deg,#1e1f21 0 .45cqw,#161719 .45cqw .9cqw);
+  box-shadow:inset 0 .3cqw 0 rgba(255,255,255,.08),inset 0 -.4cqw 0 rgba(0,0,0,.45),0 8px 16px -9px rgba(0,0,0,.55)}
+.vhs-top{position:absolute;left:0;right:0;top:0;height:17%;
+  background:repeating-linear-gradient(180deg,transparent 0 1.2cqw,rgba(0,0,0,.45) 1.2cqw 1.45cqw,rgba(255,255,255,.05) 1.45cqw 1.6cqw),linear-gradient(180deg,#2e3033,#242528);
+  box-shadow:inset 0 -.35cqw 0 rgba(0,0,0,.6),0 .2cqw 0 rgba(255,255,255,.06)}
+.vhs-top::after{content:"";position:absolute;left:50%;top:22%;width:3.2cqw;height:3.6cqw;margin-left:-1.6cqw;background:#121314;
+  clip-path:polygon(50% 0,100% 55%,68% 55%,68% 100%,32% 100%,32% 55%,0 55%);filter:drop-shadow(0 .15cqw 0 rgba(255,255,255,.1))}
+.vhs-win{position:absolute;top:34.5%;height:43%;width:10.5cqw;overflow:hidden;
+  background:linear-gradient(160deg,#3a3d41,#202225 60%,#2a2c30);box-shadow:inset 0 0 0 .35cqw #0d0e0f,inset 0 .8cqw 1.6cqw rgba(0,0,0,.6)}
+.vhs-win.l{left:3cqw;border-radius:5cqw .8cqw .8cqw 5cqw/9cqw .8cqw .8cqw 9cqw}
+.vhs-win.r{right:3cqw;border-radius:.8cqw 5cqw 5cqw .8cqw/.8cqw 9cqw 9cqw .8cqw}
+.vhs-win::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(125deg,rgba(255,255,255,.22) 0 18%,transparent 34% 62%,rgba(255,255,255,.08) 72%,transparent 85%)}
+.reel{position:absolute;top:50%;width:19cqw;height:19cqw;margin-top:-9.5cqw;border-radius:50%}
+.vhs-win.l .reel{left:1.5cqw;background:radial-gradient(circle,#0f1011 0 9%,#e9e9e7 10% 36%,#bdbdb9 37% 40%,#141414 41% 98%,transparent 99%)}
+.vhs-win.r .reel{right:1.5cqw;background:radial-gradient(circle,#0f1011 0 9%,#e9e9e7 10% 36%,#bdbdb9 37% 40%,#141414 41% 50%,rgba(255,255,255,.06) 51% 98%,transparent 99%)}
+.reel::after{content:"";position:absolute;inset:0;border-radius:50%;
+  background:repeating-conic-gradient(from 0deg,#2a2b2d 0 14deg,transparent 14deg 60deg);
+  -webkit-mask:radial-gradient(circle,transparent 0 16%,#000 17% 34%,transparent 35%);mask:radial-gradient(circle,transparent 0 16%,#000 17% 34%,transparent 35%)}
+.vhs-tile:hover .reel,.vhs-tile:focus-visible .reel,.vhs.playing .reel{animation:reel-spin 5s linear infinite}
+.vhs.playing .reel{animation-duration:1s}
 @keyframes reel-spin{to{transform:rotate(360deg)}}
-.vhs-brand{position:absolute;left:4.5%;bottom:7%;font:800 italic 3.6cqw/1 var(--f-display);color:#8b8e93;letter-spacing:.04em}
-.vhs-dur{position:absolute;right:4.5%;bottom:7%;font:700 3cqw/1 var(--f-display);color:#8b8e93}
+.vhs-label{position:absolute;left:15cqw;top:21%;width:70cqw;aspect-ratio:16/9;border-radius:1cqw;background:#111 center/cover no-repeat;
+  box-shadow:0 0 0 .35cqw #0d0e0f,0 .2cqw 0 .35cqw rgba(255,255,255,.07)}
+.vhs-dur{position:absolute;right:1.2cqw;bottom:1.2cqw;padding:.5cqw 1cqw;border-radius:.7cqw;background:rgba(0,0,0,.78);color:#fff;font:700 3cqw/1 var(--f-display)}
 .tile.vhs-tile .caption{white-space:normal}
 .tile.vhs-tile .caption .vt{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 
@@ -877,9 +878,8 @@ panel.addEventListener('click',e=>{
 const VIDS = list(videos).map(v => { const id = ytId(v.url); return id ? {id, title: esc(v.titulo), url: `https://www.youtube.com/watch?v=${id}`, dur: esc(v.duracion),
   date: v.fecha ? new Date(v.fecha + 'T12:00').toLocaleDateString('es-ES', {day:'numeric', month:'short', year:'numeric'}) : '',
   thumb: v.miniatura ? P(v.miniatura) : `https://i.ytimg.com/vi/${id}/hqdefault.jpg`} : null; }).filter(Boolean);
-const vhsHTML = v => `<div class="vhs"><div class="vhs-label"><div class="vhs-thumb" style="background-image:url(${v.thumb})"></div>
-  <div class="vhs-strip"><span>RKNA</span><i></i><span>SP</span></div></div>
-  <div class="vhs-window"><span class="reel l"></span><span class="reel r"></span></div><span class="vhs-brand">VHS</span><span class="vhs-dur">${v.dur}</span></div>`;
+const vhsHTML = v => `<div class="vhs"><div class="vhs-top"></div><div class="vhs-win l"><span class="reel"></span></div><div class="vhs-win r"><span class="reel"></span></div>
+  <div class="vhs-label" style="background-image:url(${v.thumb})">${v.dur ? `<span class="vhs-dur">${v.dur}</span>` : ''}</div></div>`;
 if (VIDS.length) {
   document.getElementById('sec-vid').hidden = false;
   const grid = document.getElementById('grid-vid');
