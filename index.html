@@ -141,6 +141,22 @@ a.ico{text-decoration:none;color:inherit}
 .disc-wrap::before{content:"";position:absolute;inset:0;border-radius:50%;box-shadow:0 0 0 1px #9da1a6,0 8px 18px -8px rgba(0,0,0,.35);
   -webkit-mask:radial-gradient(circle closest-side at 50% 50%,transparent 0 38%,#000 38.4%);mask:radial-gradient(circle closest-side at 50% 50%,transparent 0 38%,#000 38.4%)}
 .disc.full{background:#d9dcdf}
+/* reflejo irisado: se aplica solo a las zonas grises/plateadas (máscara calculada de la imagen) */
+.d-iri{position:absolute;inset:0;border-radius:50%;overflow:hidden;pointer-events:none;z-index:3;mix-blend-mode:overlay;opacity:.95;
+  -webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+.d-iri.auto{-webkit-mask-image:radial-gradient(circle closest-side,transparent 0 38%,#000 38.4% 41%,transparent 41.4% 96.4%,#000 96.8%),linear-gradient(transparent 80%,#000 80%);
+  mask-image:radial-gradient(circle closest-side,transparent 0 38%,#000 38.4% 41%,transparent 41.4% 96.4%,#000 96.8%),linear-gradient(transparent 80%,#000 80%)}
+.d-iri i{position:absolute;inset:-50%;background:conic-gradient(from 0deg,#ff5fc4,#ffcf5c,#7dffbf,#5cc8ff,#b07cff,#ff5fc4,#ffcf5c,#7dffbf,#5cc8ff,#b07cff,#ff5fc4);
+  animation:iri-turn 5s linear infinite;filter:saturate(1.4)}
+.d-iri b{position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.95) 46%,rgba(255,255,255,0) 58%);background-size:260% 100%;
+  animation:iri-shine 2.4s ease-in-out infinite}
+@keyframes iri-turn{to{transform:rotate(360deg)}}
+@keyframes iri-shine{0%{background-position:110% 0}100%{background-position:-70% 0}}
+.insert-layer{position:fixed;inset:0;z-index:55;pointer-events:none}
+.insert-disc{position:absolute;left:0;top:0}
+.insert-disc .disc-wrap{width:100%}
+.slot-line{position:absolute;height:4px;border-radius:4px;background:linear-gradient(90deg,transparent,var(--sel),transparent);opacity:0;
+  box-shadow:0 0 14px var(--sel)}
 .d-rim{position:absolute;inset:0;border-radius:50%;pointer-events:none;z-index:2;
   background:conic-gradient(from 10deg,#c3c6ca,#eef0f2,#b5b9be,#e4e6e9,#c7cace,#f2f3f4,#c3c6ca);
   -webkit-mask:radial-gradient(circle closest-side,transparent 0 38%,#000 38.4% 41%,transparent 41.4% 96.4%,#000 96.8%);
@@ -497,6 +513,7 @@ function metaOf(it){
 function select(i,{focus=false,sound=true}={}){
   if(i===sel) return; if(sel>=0&&tiles[sel]) tiles[sel].classList.remove('is-sel');
   sel=i; tiles[i].classList.add('is-sel'); if(focus) tiles[i].focus();
+  if(ITEMS[i].discFull) iriMask(ITEMS[i].discFull);
   selTitle.textContent=ITEMS[i].title; selMeta.textContent=metaOf(ITEMS[i]);
   if(sound) tone([1320],.05,.02);
 }
@@ -560,6 +577,29 @@ const manualHTML = it => { const pic=manualPic(it);
     <div class="m-title">${it.title}</div>
     <div class="m-row">${PAD}<div class="m-lines"><i></i><i></i><i></i></div></div>
     <div class="m-foot"><span>Diego Requena</span><span>p. 1</span></div></div>`; };
+const iriCache = {};
+function iriMask(src){
+  if(!iriCache[src]) iriCache[src] = new Promise(res => {
+    const im = new Image();
+    im.onload = () => {
+      const N = 512, c = document.createElement('canvas'); c.width = c.height = N;
+      const x = c.getContext('2d'); x.drawImage(im, 0, 0, N, N);
+      let d; try { d = x.getImageData(0, 0, N, N); } catch(e) { return res(null); }
+      const p = d.data;
+      for(let k = 0; k < p.length; k += 4){
+        const r = p[k], g = p[k+1], b = p[k+2], a = p[k+3];
+        const mx = Math.max(r, g, b), mn = Math.min(r, g, b), l = (mx + mn) / 510, sat = mx ? (mx - mn) / mx : 0;
+        // gris claro/plateado = poca saturación y bastante luz; el negro, el blanco puro y los colores vivos quedan fuera
+        const v = (sat < .16 && l > .55 && l < .97) ? Math.min(1, (l - .55) / .15) * Math.min(1, (.16 - sat) / .06) : 0;
+        p[k] = p[k+1] = p[k+2] = 255; p[k+3] = Math.round(v * a);
+      }
+      x.putImageData(d, 0, 0); res(c.toDataURL());
+    };
+    im.onerror = () => res(null); im.src = src;
+  });
+  return iriCache[src];
+}
+const iriHTML = auto => `<div class="d-iri${auto ? ' auto' : ''}"><i></i><b></b></div>`;
 function dressBox(i){
   const it=ITEMS[i], r=tiles[i].querySelector('.frame').getBoundingClientRect();
   const vw=innerWidth, vh=innerHeight, s=Math.min(vh*.5/r.height, vw*.42/r.width, 1.9);
@@ -570,10 +610,12 @@ function dressBox(i){
   const discImg = it.img;
   const code=`DR-${String(i+1).padStart(4,'0')}`;
   // si hay un disco diseñado entero (plantilla de Photoshop), se usa tal cual y solo se dibuja el centro encima
-  document.getElementById('f-inside').innerHTML = `<div class="disc-wrap">` + (it.discFull ? `<div class="disc full"><div class="d-full" style="background-image:url(${it.discFull})"></div><div class="d-rim"></div></div>` : `<div class="disc" style="${discImg?`--img:url(${discImg})`:''}">
+  document.getElementById('f-inside').innerHTML = `<div class="disc-wrap">` + (it.discFull ? `<div class="disc full"><div class="d-full" style="background-image:url(${it.discFull})"></div><div class="d-rim"></div>${iriHTML(false)}</div>` : `<div class="disc" style="${discImg?`--img:url(${discImg})`:''}">
     <div class="d-art"></div>
     <div class="d-band"><span class="mk">DR</span><span class="cd"><b>${code}</b>MADE IN BARCELONA</span><span class="dk">disc<small>PORTFOLIO</small></span></div>
-    <div class="d-foot"><strong>RKNA</strong><span>© ${it.year||2026} Diego Requena</span></div><div class="d-rim"></div></div>`) + `<div class="d-hub"></div></div>`;
+    <div class="d-foot"><strong>RKNA</strong><span>© ${it.year||2026} Diego Requena</span></div><div class="d-rim"></div>${iriHTML(true)}</div>`) + `<div class="d-hub"></div></div>`;
+  if(it.discFull) iriMask(it.discFull).then(url => { const el = document.querySelector('#f-inside .d-iri');
+    if(el && url){ el.style.webkitMaskImage = el.style.maskImage = `url(${url})`; } else if(el){ el.classList.add('auto'); } });
   // k = escala para que coincida con el cuadro; abierto ocupa dos anchos (tapa + disco): se centra el conjunto
   return {W,H,D,s,k:1/s,z:80*s,x0:r.left+r.width/2-W/2,y0:r.top+r.height/2-H/2,x1:vw/2-W/2+W*0.47,y1:vh/2-H/2};
 }
@@ -602,13 +644,42 @@ async function openItem(i, fromTile){
     tone([659,880],.07);
     await Promise.all([anim(lid,[{transform:lz+' rotateY(0deg)'},{transform:lz+' rotateY(-150deg)'}],540,'cubic-bezier(.3,1.25,.5,1)'),
                        anim(box,[{transform:TILT},{transform:OPEN}],540)]);
-    await wait(320);
+    await wait(260);
+    await insertDisc(g);
     render(i);
-    anim(fly,[{transform:`translate(${g.x1}px,${g.y1}px) scale(1)`,opacity:1},{transform:`translate(${g.x1}px,${g.y1}px) scale(1.4)`,opacity:0}],320);
     await screenOn();
-    stage.hidden=true; clearAnims();
+    stage.hidden=true; clearAnims(); document.querySelector('.insert-layer')?.remove();
   } else { markOut(i); render(i); await screenOn(); }
   setHash(ITEMS[i].id); busy=false;
+}
+/* el disco sale del estuche, da unas vueltas y entra en una ranura invisible */
+async function insertDisc(g){
+  const src = document.querySelector('#f-inside .disc-wrap'); if(!src) return;
+  const r = src.getBoundingClientRect(), size = Math.max(r.width, r.height);
+  const vw = innerWidth, vh = innerHeight, big = Math.min(vw * .62, vh * .5, size * 1.35);
+  const layer = document.createElement('div'); layer.className = 'insert-layer';
+  layer.style.cssText = vars(ITEMS[current]);
+  const d = document.createElement('div'); d.className = 'insert-disc';
+  d.style.cssText = `width:${size}px;height:${size}px;`;
+  d.appendChild(src.cloneNode(true));
+  const slotY = vh / 2 + big * .62, slot = document.createElement('div'); slot.className = 'slot-line';
+  slot.style.cssText = `left:${vw/2 - big*.65}px;width:${big*1.3}px;top:${slotY - 5}px`;
+  layer.append(d, slot); document.body.appendChild(layer);
+  src.style.visibility = 'hidden';
+  const x0 = r.left + r.width/2 - size/2, y0 = r.top + r.height/2 - size/2;
+  const cx = vw/2 - size/2, cy = vh/2 - size/2 - big*.08, k = big / size;
+  tone([523,659,784],.06);
+  // 1) sale del estuche hacia el centro y crece mientras el estuche se desvanece
+  anim(fly,[{opacity:1},{opacity:0}],420);
+  await anim(d,[{transform:`translate(${x0}px,${y0}px) scale(1) rotate(0deg)`},{transform:`translate(${cx}px,${cy}px) scale(${k}) rotate(300deg)`}],620,'cubic-bezier(.3,.6,.2,1)');
+  // 2) gira sobre sí mismo
+  await anim(d,[{transform:`translate(${cx}px,${cy}px) scale(${k}) rotate(300deg)`},{transform:`translate(${cx}px,${cy}px) scale(${k}) rotate(1020deg)`}],720,'cubic-bezier(.45,0,.55,1)');
+  // 3) entra en la ranura: todo lo que pasa de la línea desaparece
+  layer.style.clipPath = `inset(0 0 ${vh - slotY}px 0)`;
+  anim(slot,[{opacity:0},{opacity:.9,offset:.25},{opacity:.9,offset:.7},{opacity:0}],620,'linear');
+  tone([392,330],.07);
+  await anim(d,[{transform:`translate(${cx}px,${cy}px) scale(${k}) rotate(1020deg)`},{transform:`translate(${cx}px,${slotY - size/2 + big*.62}px) scale(${k}) rotate(1380deg)`}],520,'cubic-bezier(.55,0,.8,.4)');
+  await wait(120);
 }
 async function closeItem(){
   if(busy||current<0) return; busy=true; tone([1319,988,784],.07);

@@ -10,6 +10,7 @@
     "colores": { "principal": "#ff7a45", "secundario": "#e8414f" },
     "cuadro": { "fondo": "img/t-dn-bg3.jpg", "logo": "img/t-dn-logo.png", "tamanoLogo": 82, "posicionLogo": "centro", "oscurecer": 18 },
     "imagenDisco": "img/dn-keyart.jpg",
+    "disco": "img/disco-denshattack.webp",
     "trailer": { "url": "https://www.youtube.com/watch?v=1MUuSW4g0Bc", "titulo": "Release Date Trailer", "miniatura": "img/yt-1MUuSW4g0Bc.jpg" },
     "descripcion": "Plataformas 3D a toda velocidad en el que conduces un tren que salta, derrapa y hace trucos. Desarrollado por Undercoders y publicado por Fireshine Games.",
     "papel": "Artista 3D y Environment Artist",
