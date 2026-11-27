@@ -1,6 +1,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Estantería de Juegos</title>
+<title>Diego Requena Portfolio</title>
+<link rel="icon" type="image/png" href="img/avatar.png">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -451,6 +452,7 @@ const GAMES = ITEMS.filter(i=>i.kind==='game');
 /* cabecera desde el perfil */
 const CV = String(PERFIL.cv || 'docs/cv.pdf').replace(/^\/+/, '');
 document.querySelector('.me h1').textContent = PERFIL.nombre || '';
+if (PERFIL.nombre) document.title = PERFIL.nombre + ' Portfolio';   // el nombre de la pestaña sigue al del panel
 document.querySelector('.me p').textContent = [PERFIL.profesion, PERFIL.ciudad].filter(Boolean).join(' · ');
 if (PERFIL.avatar) { const av = document.querySelector('.avatar'); av.src = String(PERFIL.avatar).replace(/^\/+/, ''); av.alt = 'Avatar de ' + (PERFIL.nombre || ''); }
 const cvA = document.getElementById('cv-link'); cvA.href = CV; cvA.setAttribute('download', 'CV_' + slug(PERFIL.nombre || 'cv') + '.pdf');
