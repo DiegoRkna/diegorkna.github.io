@@ -46,6 +46,7 @@
     "colores": { "principal": "#7fd3f2", "secundario": "#3aa4dc" },
     "cuadro": { "fondo": "img/t-cat-bg3.jpg", "logo": "img/t-cat-logo2.png", "tamanoLogo": 84, "posicionLogo": "arriba", "oscurecer": 0 },
     "imagenDisco": "img/itch-catography.png",
+    "disco": "img/disco-catography.webp",
     "trailer": { "url": "https://www.youtube.com/watch?v=eafZiLuyh6w", "titulo": "Tráiler de itch.io", "miniatura": "img/yt-eafZiLuyh6w.jpg" },
     "descripcion": "Eres Tofu, un gato explorador que ha encallado en una isla y decide cartografiarla. Plataformas de recolección con estética tierna y acogedora.",
     "papel": "Artista generalista: concept, modelado 3D, texturizado, rigging y animación",
