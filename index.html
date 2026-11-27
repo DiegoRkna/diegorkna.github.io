@@ -671,15 +671,15 @@ async function insertDisc(g){
   tone([523,659,784],.06);
   // 1) sale del estuche hacia el centro y crece mientras el estuche se desvanece
   anim(fly,[{opacity:1},{opacity:0}],420);
-  await anim(d,[{transform:`translate(${x0}px,${y0}px) scale(1) rotate(0deg)`},{transform:`translate(${cx}px,${cy}px) scale(${k}) rotate(300deg)`}],620,'cubic-bezier(.3,.6,.2,1)');
+  await anim(d,[{transform:`translate(${x0}px,${y0}px) scale(1) rotate(0deg)`},{transform:`translate(${cx}px,${cy}px) scale(${k}) rotate(0deg)`}],560,'cubic-bezier(.3,.6,.2,1)');
   // 2) gira sobre sí mismo
-  await anim(d,[{transform:`translate(${cx}px,${cy}px) scale(${k}) rotate(300deg)`},{transform:`translate(${cx}px,${cy}px) scale(${k}) rotate(1020deg)`}],720,'cubic-bezier(.45,0,.55,1)');
+  await anim(d,[{transform:`translate(${cx}px,${cy}px) scale(${k}) rotate(0deg)`},{transform:`translate(${cx}px,${cy}px) scale(${k}) rotate(720deg)`}],520,'cubic-bezier(.5,0,.75,.6)');
   // 3) entra en la ranura: todo lo que pasa de la línea desaparece
   layer.style.clipPath = `inset(0 0 ${vh - slotY}px 0)`;
-  anim(slot,[{opacity:0},{opacity:.9,offset:.25},{opacity:.9,offset:.7},{opacity:0}],620,'linear');
+  anim(slot,[{opacity:0},{opacity:.9,offset:.25},{opacity:.9,offset:.7},{opacity:0}],480,'linear');
   tone([392,330],.07);
-  await anim(d,[{transform:`translate(${cx}px,${cy}px) scale(${k}) rotate(1020deg)`},{transform:`translate(${cx}px,${slotY - size/2 + big*.62}px) scale(${k}) rotate(1380deg)`}],520,'cubic-bezier(.55,0,.8,.4)');
-  await wait(120);
+  await anim(d,[{transform:`translate(${cx}px,${cy}px) scale(${k}) rotate(720deg)`},{transform:`translate(${cx}px,${slotY - size/2 + big*.62}px) scale(${k}) rotate(1080deg)`}],380,'cubic-bezier(.55,0,.8,.4)');
+  await wait(80);
 }
 async function closeItem(){
   if(busy||current<0) return; busy=true; tone([1319,988,784],.07);
