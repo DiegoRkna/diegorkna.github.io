@@ -384,7 +384,7 @@ html,body{transition:background-color .3s ease}
   <div class="now" aria-live="polite"><h2 id="sel-title">Elige un juego</h2><p id="sel-meta">Ábrelo para ver qué hice en él</p></div>
 
   <section class="group" aria-labelledby="g-games"><p class="group-label" id="g-games">Juegos</p><div class="grid" id="grid-game"></div></section>
-  <section class="group" aria-labelledby="g-art"><p class="group-label" id="g-art">Arte</p><div class="grid" id="grid-art"></div></section>
+  <section class="group" id="sec-art" aria-labelledby="g-art"><p class="group-label" id="g-art">Arte</p><div class="grid" id="grid-art"></div></section>
 
   <p class="hints"><span><kbd class="kbd-arr"><svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></kbd>Elegir</span><span><kbd>Enter</kbd>Abrir</span><span><kbd>Esc</kbd>Volver</span></p>
 </div>
@@ -459,11 +459,12 @@ try {
 const pc = PERFIL.colores || {};
 const ITEMS = [
   ...list(juegos).map(fromGame),
-  ...list(arte).map(fromArt),
+  ...(PERFIL.mostrarArte === false ? [] : list(arte).map(fromArt)),   // la sección Arte se puede ocultar desde el panel
   {id:'sobre-mi', key:'about', kind:'about', title:'Sobre mí', genre:'Ficha', a: esc(pc.principal || '#f0a070'), b: esc(pc.secundario || '#e97f45'), img: P(PERFIL.avatar)},
   {id:'contacto', key:'contact', kind:'contact', title:'Contacto', genre:'Hablemos', a:'#ffd06b', b:'#f5a524'}
 ];
 const GAMES = ITEMS.filter(i=>i.kind==='game');
+if (!ITEMS.some(i=>i.kind==='art')) document.getElementById('sec-art').hidden = true;
 
 /* cabecera desde el perfil */
 const CV = String(PERFIL.cv || 'docs/cv.pdf').replace(/^\/+/, '');

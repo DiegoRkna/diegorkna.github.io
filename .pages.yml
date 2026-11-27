@@ -309,6 +309,10 @@ content:
         label: CV (PDF)
         type: file
         options: { media: documentos, categories: [document] }
+      - name: mostrarArte
+        label: Mostrar la sección Arte
+        type: boolean
+        description: Desactívalo para ocultar la sección Arte de la web sin borrar su contenido.
       - name: colores
         component: colores
       - name: bio
